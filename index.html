@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral-Systemic Health Integration Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .disclaimer {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            margin: 20px 30px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #856404;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 18px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab.active {
+            background: white;
+            color: #2193b0;
+            border-bottom: 3px solid #2193b0;
+        }
+
+        .content {
+            padding: 30px;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2193b0;
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #2193b0;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .score-badge {
+            background: #2193b0;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .score-badge.high {
+            background: #dc3545;
+        }
+
+        .score-badge.moderate {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .score-badge.low {
+            background: #28a745;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header {
+            background: #e9ecef;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin: 20px 0 15px 0;
+            font-weight: 600;
+            color: #495057;
+            border-left: 4px solid #2193b0;
+        }
+
+        .tooth-chart {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tooth {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tooth:hover {
+            opacity: 0.7;
+            transform: scale(1.05);
+        }
+
+        .tooth.flagged {
+            fill: #dc3545 !important;
+        }
+
+        .tooth.selected {
+            stroke: #ffc107;
+            stroke-width: 3;
+        }
+
+        .meridian-info {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .meridian-info.active {
+            display: block;
+        }
+
+        .protocol-item {
+            background: white;
+            border: 2px solid #dee2e6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .protocol-item h4 {
+            color: #2193b0;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(33, 147, 176, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px;
+            flex-wrap: wrap;
+        }
+
+        .risk-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .risk-indicator.high {
+            background: #dc3545;
+        }
+
+        .risk-indicator.moderate {
+            background: #ffc107;
+        }
+
+        .risk-indicator.low {
+            background: #28a745;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦷 Oral-Systemic Health Integration Platform</h1>
+            <p>Comprehensive Dental Functional Medicine Assessment</p>
+        </div>
+
+        <div class="disclaimer">
+            <strong>⚠️ Professional Use Only:</strong> This assessment evaluates oral health findings and their established connections to systemic health. All recommendations support oral health outcomes and are not intended to diagnose, treat, cure, or prevent any disease. Supplement recommendations are for oral health support. For comprehensive medical evaluation, patients should consult with their physician.
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab(0)">Patient Info</button>
+            <button class="tab" onclick="showTab(1)">Oral Exam</button>
+            <button class="tab" onclick="showTab(2)">Tooth Meridian</button>
+            <button class="tab" onclick="showTab(3)">Risk Scoring</button>
+            <button class="tab" onclick="showTab(4)">Labs</button>
+            <button class="tab" onclick="showTab(5)">Supplements</button>
+            <button class="tab" onclick="showTab(6)">Referrals</button>
+            <button class="tab" onclick="showTab(7)">Report</button>
+        </div>
+
+        <div class="content">
+            <!-- Tab 0: Patient Info -->
+            <div class="tab-content active">
+                <h2>Patient Information & Dental History</h2>
+                <div class="grid-3">
+                    <div class="input-group">
+                        <label>Patient Name</label>
+                        <input type="text" id="patientName">
+                    </div>
+                    <div class="input-group">
+                        <label>Date of Birth</label>
+                        <input type="date" id="dob">
+                    </div>
+                    <div class="input-group">
+                        <label>Assessment Date</label>
+                        <input type="date" id="assessmentDate">
+                    </div>
+                </div>
+                <div class="grid-3">
+                    <div class="input-group">
+                        <label>Gender</label>
+                        <select id="gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Chief Complaint (Oral & Systemic Symptoms)</label>
+                    <textarea id="chiefComplaint" rows="3"></textarea>
+                </div>
+
+                <div class="section-header">Medical History with Oral Manifestations</div>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diabetes" onchange="updateRiskScores()">
+                        <label>Diabetes/Pre-diabetes</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cvd" onchange="updateRiskScores()">
+                        <label>Cardiovascular disease</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="autoimmune" onchange="updateRiskScores()">
+                        <label>Autoimmune conditions</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="osteoporosis" onchange="updateRiskScores()">
+                        <label>Osteoporosis</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="gerd" onchange="updateRiskScores()">
+                        <label>GERD/Acid reflux</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="sleepApnea" onchange="updateRiskScores()">
+                        <label>Sleep apnea</label>
+                    </div>
+                </div>
+
+                <div class="section-header">Current Medications Affecting Oral Health</div>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="medDryMouth">
+                        <label>Medications causing dry mouth</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="medBisphosphonates">
+                        <label>Bisphosphonates</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="medBloodThinners">
+                        <label>Blood thinners</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="medImmunosuppressants">
+                        <label>Immunosuppressants</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 1: Oral Examination -->
+            <div class="tab-content">
+                <h2>Comprehensive Oral Examination</h2>
+
+                <div class="card">
+                    <div class="card-title">Periodontal Assessment</div>
+                    <div class="grid-3">
+                        <div class="input-group">
+                            <label>Average Probing Depth (mm)</label>
+                            <input type="number" id="probingDepth" step="0.1" onchange="updateRiskScores()">
+                        </div>
+                        <div class="input-group">
+                            <label>Bleeding on Probing (%)</label>
+                            <input type="number" id="bleeding" min="0" max="100" onchange="updateRiskScores()">
+                        </div>
+                        <div class="input-group">
+                            <label>Clinical Attachment Loss (mm)</label>
+                            <input type="number" id="attachmentLoss" step="0.1" onchange="updateRiskScores()">
+                        </div>
+                    </div>
+                    <div class="radio-group" style="margin-top: 15px;">
+                        <label style="font-weight: 600;">Periodontal Status:</label>
+                        <div class="radio-item">
+                            <input type="radio" name="perio" value="healthy" id="perioHealthy" onchange="updateRiskScores()">
+                            <label>Healthy</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="perio" value="gingivitis" id="perioGingivitis" onchange="updateRiskScores()">
+                            <label>Gingivitis</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="perio" value="mild" id="perioMild" onchange="updateRiskScores()">
+                            <label>Mild Periodontitis</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="perio" value="moderate" id="perioModerate" onchange="updateRiskScores()">
+                            <label>Moderate Periodontitis</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="perio" value="severe" id="perioSevere" onchange="updateRiskScores()">
+                            <label>Severe Periodontitis</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Hard Tissue Findings</div>
+                    <div class="grid-3">
+                        <div class="input-group">
+                            <label>Number of Active Caries</label>
+                            <input type="number" id="caries" min="0" onchange="updateRiskScores()">
+                        </div>
+                        <div class="input-group">
+                            <label>Missing Teeth</label>
+                            <input type="number" id="missingTeeth" min="0" max="32" onchange="updateRiskScores()">
+                        </div>
+                        <div class="input-group">
+                            <label>Number of Amalgam Fillings</label>
+                            <input type="number" id="amalgams" min="0" onchange="updateRiskScores()">
+                        </div>
+                    </div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="erosion" onchange="updateRiskScores()">
+                            <label>Enamel erosion/demineralization</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="whiteSpots">
+                            <label>White spot lesions (early decay)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sensitivity">
+                            <label>Temperature sensitivity</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Oral Soft Tissue Examination</div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="geographicTongue" onchange="updateRiskScores()">
+                            <label>Geographic tongue (B vitamin/zinc deficiency)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="coatedTongue">
+                            <label>Heavily coated tongue</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="paleMucosa" onchange="updateRiskScores()">
+                            <label>Pale oral mucosa (anemia)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="angularCheilitis" onchange="updateRiskScores()">
+                            <label>Angular cheilitis (B vitamin/iron deficiency)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dryMouth" onchange="updateRiskScores()">
+                            <label>Xerostomia (dry mouth)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="oralLesions">
+                            <label>Recurrent oral lesions</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Occlusion & TMJ Assessment</div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bruxism" onchange="updateRiskScores()">
+                            <label>Bruxism (wear facets present)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tmjPain" onchange="updateRiskScores()">
+                            <label>TMJ pain/clicking</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="headaches" onchange="updateRiskScores()">
+                            <label>Tension headaches/migraines</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="muscleTension">
+                            <label>Jaw muscle tension</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Salivary Assessment</div>
+                    <div class="grid-3">
+                        <div class="input-group">
+                            <label>Salivary pH</label>
+                            <input type="number" id="salivaryPH" step="0.1" min="4" max="8">
+                        </div>
+                        <div class="input-group">
+                            <label>Flow Rate</label>
+                            <select id="flowRate">
+                                <option value="">Select</option>
+                                <option value="normal">Normal</option>
+                                <option value="reduced">Reduced</option>
+                                <option value="severely-reduced">Severely Reduced</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Tooth Meridian Chart -->
+            <div class="tab-content">
+                <h2>Tooth Meridian Analysis</h2>
+                <div class="alert alert-info">
+                    Click on any tooth to view its associated organ systems and meridian connections. Mark teeth with pathology (decay, root canals, missing, etc.) to identify potential systemic correlations.
+                </div>
+
+                <div class="tooth-chart">
+                    <svg id="toothChart" width="100%" height="400" viewBox="0 0 800 400">
+                        <!-- Upper Teeth -->
+                        <text x="400" y="30" text-anchor="middle" font-weight="bold">MAXILLARY (Upper)</text>
+                        <!-- Right Upper -->
+                        <g id="tooth1" class="tooth" onclick="selectTooth(1)">
+                            <rect x="50" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="70" y="85" text-anchor="middle" font-size="14">1</text>
+                        </g>
+                        <g id="tooth2" class="tooth" onclick="selectTooth(2)">
+                            <rect x="100" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="120" y="85" text-anchor="middle" font-size="14">2</text>
+                        </g>
+                        <g id="tooth3" class="tooth" onclick="selectTooth(3)">
+                            <rect x="150" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="170" y="85" text-anchor="middle" font-size="14">3</text>
+                        </g>
+                        <g id="tooth4" class="tooth" onclick="selectTooth(4)">
+                            <rect x="200" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="220" y="85" text-anchor="middle" font-size="14">4</text>
+                        </g>
+                        <g id="tooth5" class="tooth" onclick="selectTooth(5)">
+                            <rect x="250" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="270" y="85" text-anchor="middle" font-size="14">5</text>
+                        </g>
+                        <g id="tooth6" class="tooth" onclick="selectTooth(6)">
+                            <rect x="300" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="320" y="85" text-anchor="middle" font-size="14">6</text>
+                        </g>
+                        <g id="tooth7" class="tooth" onclick="selectTooth(7)">
+                            <rect x="350" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="370" y="85" text-anchor="middle" font-size="14">7</text>
+                        </g>
+                        <g id="tooth8" class="tooth" onclick="selectTooth(8)">
+                            <rect x="400" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="420" y="85" text-anchor="middle" font-size="14">8</text>
+                        </g>
+                        <!-- Left Upper -->
+                        <g id="tooth9" class="tooth" onclick="selectTooth(9)">
+                            <rect x="460" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="480" y="85" text-anchor="middle" font-size="14">9</text>
+                        </g>
+                        <g id="tooth10" class="tooth" onclick="selectTooth(10)">
+                            <rect x="510" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="530" y="85" text-anchor="middle" font-size="14">10</text>
+                        </g>
+                        <g id="tooth11" class="tooth" onclick="selectTooth(11)">
+                            <rect x="560" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="580" y="85" text-anchor="middle" font-size="14">11</text>
+                        </g>
+                        <g id="tooth12" class="tooth" onclick="selectTooth(12)">
+                            <rect x="610" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="630" y="85" text-anchor="middle" font-size="14">12</text>
+                        </g>
+                        <g id="tooth13" class="tooth" onclick="selectTooth(13)">
+                            <rect x="660" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="680" y="85" text-anchor="middle" font-size="14">13</text>
+                        </g>
+                        <g id="tooth14" class="tooth" onclick="selectTooth(14)">
+                            <rect x="710" y="50" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="730" y="85" text-anchor="middle" font-size="14">14</text>
+                        </g>
+                        <g id="tooth15" class="tooth" onclick="selectTooth(15)">
+                            <rect x="50" y="130" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="70" y="165" text-anchor="middle" font-size="14">15</text>
+                        </g>
+                        <g id="tooth16" class="tooth" onclick="selectTooth(16)">
+                            <rect x="100" y="130" width="40" height="60" fill="#b3e5fc" stroke="#01579b" stroke-width="2"/>
+                            <text x="120" y="165" text-anchor="middle" font-size="14">16</text>
+                        </g>
+
+                        <!-- Lower Teeth -->
+                        <text x="400" y="230" text-anchor="middle" font-weight="bold">MANDIBULAR (Lower)</text>
+                        <!-- Right Lower -->
+                        <g id="tooth17" class="tooth" onclick="selectTooth(17)">
+                            <rect x="50" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="70" y="285" text-anchor="middle" font-size="14">17</text>
+                        </g>
+                        <g id="tooth18" class="tooth" onclick="selectTooth(18)">
+                            <rect x="100" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="120" y="285" text-anchor="middle" font-size="14">18</text>
+                        </g>
+                        <g id="tooth19" class="tooth" onclick="selectTooth(19)">
+                            <rect x="150" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="170" y="285" text-anchor="middle" font-size="14">19</text>
+                        </g>
+                        <g id="tooth20" class="tooth" onclick="selectTooth(20)">
+                            <rect x="200" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="220" y="285" text-anchor="middle" font-size="14">20</text>
+                        </g>
+                        <g id="tooth21" class="tooth" onclick="selectTooth(21)">
+                            <rect x="250" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="270" y="285" text-anchor="middle" font-size="14">21</text>
+                        </g>
+                        <g id="tooth22" class="tooth" onclick="selectTooth(22)">
+                            <rect x="300" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="320" y="285" text-anchor="middle" font-size="14">22</text>
+                        </g>
+                        <g id="tooth23" class="tooth" onclick="selectTooth(23)">
+                            <rect x="350" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="370" y="285" text-anchor="middle" font-size="14">23</text>
+                        </g>
+                        <g id="tooth24" class="tooth" onclick="selectTooth(24)">
+                            <rect x="400" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="420" y="285" text-anchor="middle" font-size="14">24</text>
+                        </g>
+                        <!-- Left Lower -->
+                        <g id="tooth25" class="tooth" onclick="selectTooth(25)">
+                            <rect x="460" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="480" y="285" text-anchor="middle" font-size="14">25</text>
+                        </g>
+                        <g id="tooth26" class="tooth" onclick="selectTooth(26)">
+                            <rect x="510" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="530" y="285" text-anchor="middle" font-size="14">26</text>
+                        </g>
+                        <g id="tooth27" class="tooth" onclick="selectTooth(27)">
+                            <rect x="560" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="580" y="285" text-anchor="middle" font-size="14">27</text>
+                        </g>
+                        <g id="tooth28" class="tooth" onclick="selectTooth(28)">
+                            <rect x="610" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="630" y="285" text-anchor="middle" font-size="14">28</text>
+                        </g>
+                        <g id="tooth29" class="tooth" onclick="selectTooth(29)">
+                            <rect x="660" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="680" y="285" text-anchor="middle" font-size="14">29</text>
+                        </g>
+                        <g id="tooth30" class="tooth" onclick="selectTooth(30)">
+                            <rect x="710" y="250" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="730" y="285" text-anchor="middle" font-size="14">30</text>
+                        </g>
+                        <g id="tooth31" class="tooth" onclick="selectTooth(31)">
+                            <rect x="50" y="330" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="70" y="365" text-anchor="middle" font-size="14">31</text>
+                        </g>
+                        <g id="tooth32" class="tooth" onclick="selectTooth(32)">
+                            <rect x="100" y="330" width="40" height="60" fill="#ffccbc" stroke="#bf360c" stroke-width="2"/>
+                            <text x="120" y="365" text-anchor="middle" font-size="14">32</text>
+                        </g>
+                    </svg>
+
+                    <div class="checkbox-group" style="margin-top: 20px;">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="toothPathology">
+                            <label>Mark selected tooth as having pathology (decay, root canal, infection, etc.)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="meridianInfo" class="meridian-info"></div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-title">Documented Tooth-Organ Correlations</div>
+                    <div id="toothSystemList">
+                        <p style="color: #6c757d;">Select teeth with pathology to see potential systemic connections.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Risk Scoring -->
+            <div class="tab-content">
+                <h2>Oral-Systemic Risk Assessment</h2>
+                <div class="alert alert-info">
+                    Risk scores are automatically calculated based on oral examination findings and their evidence-based connections to systemic health.
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        Cardiovascular Risk Score
+                        <span id="cvRiskBadge" class="score-badge">0</span>
+                    </div>
+                    <div id="cvRiskDetails"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        Diabetes/Metabolic Risk Score
+                        <span id="diabetesRiskBadge" class="score-badge">0</span>
+                    </div>
+                    <div id="diabetesRiskDetails"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        Inflammatory Burden Score
+                        <span id="inflammationBadge" class="score-badge">0</span>
+                    </div>
+                    <div id="inflammationDetails"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        Nutritional Deficiency Risk
+                        <span id="nutritionBadge" class="score-badge">0</span>
+                    </div>
+                    <div id="nutritionDetails"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        Stress/Sleep Disorder Risk
+                        <span id="stressBadge" class="score-badge">0</span>
+                    </div>
+                    <div id="stressDetails"></div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Labs -->
+            <div class="tab-content">
+                <h2>Recommended Functional Labs</h2>
+                <div class="alert alert-warning">
+                    <strong>Scope Note:</strong> These laboratory tests are recommended to screen for systemic conditions that may affect oral health or are indicated by oral findings. Results should be shared with the patient's physician for medical interpretation and treatment.
+                </div>
+
+                <div id="labRecommendations"></div>
+            </div>
+
+            <!-- Tab 5: Supplements -->
+            <div class="tab-content">
+                <h2>Supplement Protocol for Oral Health Support</h2>
+                <div class="alert alert-warning">
+                    <strong>Legal Disclaimer:</strong> All supplement recommendations are for oral health support only. These recommendations are based on oral examination findings and nutritional factors affecting oral health. Not intended to diagnose, treat, cure, or prevent any disease.
+                </div>
+
+                <div id="supplementProtocol"></div>
+            </div>
+
+            <!-- Tab 6: Referrals -->
+            <div class="tab-content">
+                <h2>Referral Recommendations</h2>
+                <div id="referralRecommendations"></div>
+            </div>
+
+            <!-- Tab 7: Report -->
+            <div class="tab-content">
+                <h2>Comprehensive Assessment Report</h2>
+                <div id="finalReport">
+                    <p style="text-align: center; padding: 40px; color: #6c757d;">
+                        Complete all assessment sections, then click "Generate Report" below.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="generateReport()">📊 Generate Complete Report</button>
+            <button class="btn btn-secondary" onclick="showExportOptions()">💾 Export Assessment</button>
+            <button class="btn btn-secondary" onclick="printReport()">🖨️ Print Report</button>
+        </div>
+    </div>
+
+    <!-- Export Options Modal -->
+    <div id="exportModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;" onclick="if(event.target.id === 'exportModal') closeExportModal()">
+        <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);" onclick="event.stopPropagation()">
+            <h2 style="margin-bottom: 20px; color: #2193b0;">Export Assessment</h2>
+            <p style="margin-bottom: 20px; color: #6c757d;">Choose your export format:</p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <button class="btn btn-primary" onclick="exportAsJSON()" style="width: 100%;">
+                    📄 Export as JSON (Data Format)
+                </button>
+                <button class="btn btn-primary" onclick="exportAsHTML()" style="width: 100%;">
+                    🌐 Export as HTML Report (Save as PDF)
+                </button>
+                <button class="btn btn-primary" onclick="exportAsCSV()" style="width: 100%;">
+                    📊 Export as CSV (Spreadsheet)
+                </button>
+                <button class="btn btn-secondary" onclick="closeExportModal()" style="width: 100%;">
+                    ✖️ Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tooth Meridian Data
+        const toothMeridians = {
+            1: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"},
+            2: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"},
+            3: {organs: "Liver, Gallbladder", systems: "Detoxification, Digestive", emotions: "Anger, Frustration"},
+            4: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            5: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            6: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            7: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            8: {organs: "Heart, Small Intestine", systems: "Cardiovascular, Digestive", emotions: "Joy, Anxiety"},
+            9: {organs: "Heart, Small Intestine", systems: "Cardiovascular, Digestive", emotions: "Joy, Anxiety"},
+            10: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            11: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            12: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            13: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            14: {organs: "Liver, Gallbladder", systems: "Detoxification, Digestive", emotions: "Anger, Frustration"},
+            15: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"},
+            16: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"},
+            17: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"},
+            18: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"},
+            19: {organs: "Liver, Gallbladder", systems: "Detoxification, Digestive", emotions: "Anger, Frustration"},
+            20: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            21: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            22: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            23: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            24: {organs: "Heart, Small Intestine", systems: "Cardiovascular, Digestive", emotions: "Joy, Anxiety"},
+            25: {organs: "Heart, Small Intestine", systems: "Cardiovascular, Digestive", emotions: "Joy, Anxiety"},
+            26: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            27: {organs: "Stomach, Spleen, Pancreas", systems: "Digestive, Blood Sugar", emotions: "Worry, Overthinking"},
+            28: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            29: {organs: "Lung, Large Intestine", systems: "Respiratory, Elimination", emotions: "Grief, Sadness"},
+            30: {organs: "Liver, Gallbladder", systems: "Detoxification, Digestive", emotions: "Anger, Frustration"},
+            31: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"},
+            32: {organs: "Bladder, Kidney", systems: "Urinary System, Endocrine", emotions: "Fear, Insecurity"}
+        };
+
+        let selectedTooth = null;
+        let flaggedTeeth = [];
+
+        function showTab(index) {
+            try {
+                const tabs = document.querySelectorAll('.tab');
+                const contents = document.querySelectorAll('.tab-content');
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                if (tabs[index]) tabs[index].classList.add('active');
+                if (contents[index]) contents[index].classList.add('active');
+            } catch (error) {
+                console.error('Error in showTab:', error);
+            }
+        }
+
+        function selectTooth(toothNum) {
+            try {
+                if (selectedTooth) {
+                    const prevTooth = document.getElementById(`tooth${selectedTooth}`);
+                    if (prevTooth) prevTooth.classList.remove('selected');
+                }
+                selectedTooth = toothNum;
+                const currentTooth = document.getElementById(`tooth${toothNum}`);
+                if (currentTooth) currentTooth.classList.add('selected');
+                
+                const info = toothMeridians[toothNum];
+                if (!info) {
+                    console.error('No meridian data for tooth', toothNum);
+                    return;
+                }
+                
+                const meridianDiv = document.getElementById('meridianInfo');
+                if (!meridianDiv) return;
+                
+                meridianDiv.className = 'meridian-info active';
+                meridianDiv.innerHTML = `
+                    <h3>Tooth #${toothNum} - Meridian Connections</h3>
+                    <p><strong>Associated Organs:</strong> ${info.organs}</p>
+                    <p><strong>Body Systems:</strong> ${info.systems}</p>
+                    <p><strong>Emotional Aspects:</strong> ${info.emotions}</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #856404;">
+                        <em>Note: Tooth meridian chart shows traditional correlations from Chinese medicine. Document dental pathology and consider potential systemic connections as part of comprehensive assessment.</em>
+                    </p>
+                `;
+
+                // Check if tooth is flagged
+                const checkbox = document.getElementById('toothPathology');
+                if (checkbox) {
+                    checkbox.checked = flaggedTeeth.includes(toothNum);
+                    checkbox.onchange = () => toggleToothPathology(toothNum);
+                }
+            } catch (error) {
+                console.error('Error in selectTooth:', error);
+            }
+        }
+
+        function toggleToothPathology(toothNum) {
+            try {
+                const tooth = document.getElementById(`tooth${toothNum}`);
+                const checkbox = document.getElementById('toothPathology');
+                
+                if (!tooth || !checkbox) return;
+                
+                if (checkbox.checked) {
+                    if (!flaggedTeeth.includes(toothNum)) {
+                        flaggedTeeth.push(toothNum);
+                        tooth.classList.add('flagged');
+                    }
+                } else {
+                    flaggedTeeth = flaggedTeeth.filter(t => t !== toothNum);
+                    tooth.classList.remove('flagged');
+                }
+                
+                updateToothSystemList();
+            } catch (error) {
+                console.error('Error in toggleToothPathology:', error);
+            }
+        }
+
+        function updateToothSystemList() {
+            try {
+                const div = document.getElementById('toothSystemList');
+                if (!div) return;
+                
+                if (flaggedTeeth.length === 0) {
+                    div.innerHTML = '<p style="color: #6c757d;">No teeth with documented pathology.</p>';
+                    return;
+                }
+
+                let html = '<table><tr><th>Tooth #</th><th>Associated Organs/Systems</th><th>Potential Correlations</th></tr>';
+                flaggedTeeth.forEach(t => {
+                    const info = toothMeridians[t];
+                    if (info) {
+                        html += `<tr>
+                            <td><strong>${t}</strong></td>
+                            <td>${info.organs}</td>
+                            <td>${info.systems}</td>
+                        </tr>`;
+                    }
+                });
+                html += '</table>';
+                div.innerHTML = html;
+            } catch (error) {
+                console.error('Error in updateToothSystemList:', error);
+            }
+        }
+
+        function updateRiskScores() {
+            try {
+                calculateCVRisk();
+                calculateDiabetesRisk();
+                calculateInflammationRisk();
+                calculateNutritionRisk();
+                calculateStressRisk();
+                generateLabRecommendations();
+                generateSupplementProtocol();
+                generateReferrals();
+            } catch (error) {
+                console.error('Error in updateRiskScores:', error);
+            }
+        }
+
+        function calculateCVRisk() {
+            let score = 0;
+            let details = [];
+
+            const perio = document.querySelector('input[name="perio"]:checked');
+            if (perio) {
+                if (perio.value === 'severe') {
+                    score += 5;
+                    details.push('Severe periodontitis (+5) - Strong CVD correlation');
+                } else if (perio.value === 'moderate') {
+                    score += 3;
+                    details.push('Moderate periodontitis (+3) - Moderate CVD risk');
+                } else if (perio.value === 'mild') {
+                    score += 1;
+                    details.push('Mild periodontitis (+1) - Mild CVD risk');
+                }
+            }
+
+            const missing = parseInt(document.getElementById('missingTeeth').value) || 0;
+            if (missing >= 6) {
+                score += 3;
+                details.push(`${missing} missing teeth (+3) - Associated with CVD risk`);
+            } else if (missing >= 3) {
+                score += 1;
+                details.push(`${missing} missing teeth (+1) - Mild CVD indicator`);
+            }
+
+            if (document.getElementById('cvd').checked) {
+                score += 2;
+                details.push('History of CVD (+2) - Monitor closely');
+            }
+
+            const bleeding = parseInt(document.getElementById('bleeding').value) || 0;
+            if (bleeding > 50) {
+                score += 2;
+                details.push('High bleeding on probing (+2) - Active inflammation');
+            }
+
+            updateRiskBadge('cvRiskBadge', 'cvRiskDetails', score, details, 7);
+        }
+
+        function calculateDiabetesRisk() {
+            let score = 0;
+            let details = [];
+
+            if (document.getElementById('diabetes').checked) {
+                score += 5;
+                details.push('Diabetes history (+5) - Bidirectional relationship with periodontal disease');
+            }
+
+            const perio = document.querySelector('input[name="perio"]:checked');
+            if (perio && (perio.value === 'moderate' || perio.value === 'severe')) {
+                score += 3;
+                details.push('Moderate-severe periodontitis (+3) - Diabetes risk indicator');
+            }
+
+            if (document.getElementById('dryMouth').checked) {
+                score += 2;
+                details.push('Xerostomia (+2) - Can indicate uncontrolled glucose');
+            }
+
+            const caries = parseInt(document.getElementById('caries').value) || 0;
+            if (caries >= 5) {
+                score += 1;
+                details.push('Multiple active caries (+1) - May indicate metabolic issues');
+            }
+
+            updateRiskBadge('diabetesRiskBadge', 'diabetesRiskDetails', score, details, 8);
+        }
+
+        function calculateInflammationRisk() {
+            let score = 0;
+            let details = [];
+
+            const perio = document.querySelector('input[name="perio"]:checked');
+            if (perio) {
+                if (perio.value === 'severe') {
+                    score += 5;
+                    details.push('Severe periodontitis (+5) - High systemic inflammatory burden');
+                } else if (perio.value === 'moderate') {
+                    score += 3;
+                    details.push('Moderate periodontitis (+3) - Moderate inflammation');
+                } else if (perio.value === 'gingivitis') {
+                    score += 1;
+                    details.push('Gingivitis (+1) - Local inflammation present');
+                }
+            }
+
+            const bleeding = parseInt(document.getElementById('bleeding').value) || 0;
+            if (bleeding > 30) {
+                score += 2;
+                details.push(`${bleeding}% bleeding on probing (+2) - Active inflammation`);
+            }
+
+            const amalgams = parseInt(document.getElementById('amalgams').value) || 0;
+            if (amalgams >= 8) {
+                score += 2;
+                details.push(`${amalgams} amalgam fillings (+2) - Potential heavy metal burden`);
+            } else if (amalgams >= 4) {
+                score += 1;
+                details.push(`${amalgams} amalgam fillings (+1) - Monitor mercury exposure`);
+            }
+
+            if (document.getElementById('autoimmune').checked) {
+                score += 3;
+                details.push('Autoimmune condition (+3) - Chronic inflammatory state');
+            }
+
+            updateRiskBadge('inflammationBadge', 'inflammationDetails', score, details, 10);
+        }
+
+        function calculateNutritionRisk() {
+            let score = 0;
+            let details = [];
+
+            if (document.getElementById('geographicTongue').checked) {
+                score += 2;
+                details.push('Geographic tongue (+2) - B vitamins/zinc deficiency indicator');
+            }
+
+            if (document.getElementById('angularCheilitis').checked) {
+                score += 2;
+                details.push('Angular cheilitis (+2) - B vitamins/iron deficiency');
+            }
+
+            if (document.getElementById('paleMucosa').checked) {
+                score += 3;
+                details.push('Pale oral mucosa (+3) - Anemia suspected');
+            }
+
+            if (document.getElementById('erosion').checked) {
+                score += 2;
+                details.push('Enamel erosion (+2) - Acid exposure or mineral deficiency');
+            }
+
+            const bleeding = parseInt(document.getElementById('bleeding').value) || 0;
+            if (bleeding > 20 && document.querySelector('input[name="perio"]:checked')?.value === 'healthy') {
+                score += 2;
+                details.push('Bleeding despite good oral hygiene (+2) - Vitamin C/K deficiency');
+            }
+
+            if (document.getElementById('osteoporosis').checked) {
+                score += 2;
+                details.push('Osteoporosis history (+2) - Vitamin D/K2/calcium needs');
+            }
+
+            updateRiskBadge('nutritionBadge', 'nutritionDetails', score, details, 8);
+        }
+
+        function calculateStressRisk() {
+            let score = 0;
+            let details = [];
+
+            if (document.getElementById('bruxism').checked) {
+                score += 3;
+                details.push('Bruxism (+3) - Stress/sleep disorder indicator');
+            }
+
+            if (document.getElementById('tmjPain').checked) {
+                score += 2;
+                details.push('TMJ dysfunction (+2) - Stress-related muscle tension');
+            }
+
+            if (document.getElementById('headaches').checked) {
+                score += 2;
+                details.push('Tension headaches (+2) - Stress/magnesium deficiency');
+            }
+
+            if (document.getElementById('sleepApnea').checked) {
+                score += 4;
+                details.push('Sleep apnea history (+4) - Major sleep disorder');
+            }
+
+            updateRiskBadge('stressBadge', 'stressDetails', score, details, 8);
+        }
+
+        function updateRiskBadge(badgeId, detailsId, score, details, maxScore) {
+            try {
+                const badge = document.getElementById(badgeId);
+                if (!badge) return;
+                
+                badge.textContent = score;
+                
+                badge.className = 'score-badge';
+                if (score >= maxScore * 0.7) {
+                    badge.classList.add('high');
+                } else if (score >= maxScore * 0.4) {
+                    badge.classList.add('moderate');
+                } else if (score > 0) {
+                    badge.classList.add('low');
+                }
+
+                const detailsDiv = document.getElementById(detailsId);
+                if (!detailsDiv) return;
+                
+                if (details.length === 0) {
+                    detailsDiv.innerHTML = '<p style="color: #6c757d;">No risk factors identified</p>';
+                } else {
+                    detailsDiv.innerHTML = '<ul>' + details.map(d => `<li>${d}</li>`).join('') + '</ul>';
+                }
+            } catch (error) {
+                console.error('Error in updateRiskBadge:', error);
+            }
+        }
+
+        function generateLabRecommendations() {
+            try {
+                const div = document.getElementById('labRecommendations');
+                if (!div) return;
+                
+                let labs = [];
+
+                // Always recommend if periodontal disease
+                const perio = document.querySelector('input[name="perio"]:checked');
+                if (perio && perio.value !== 'healthy') {
+                    labs.push({
+                        name: 'Core Inflammatory Panel',
+                        tests: ['hs-CRP', 'Vitamin D (25-OH)', 'Omega-3 Index', 'CBC with Differential'],
+                        reason: 'Periodontal disease present - assess systemic inflammation and nutritional status',
+                        priority: 'High'
+                    });
+                }
+
+                // Diabetes risk
+                const diabetesBadge = document.getElementById('diabetesRiskBadge');
+                const diabetesScore = diabetesBadge ? parseInt(diabetesBadge.textContent) : 0;
+                if (diabetesScore >= 3) {
+                    labs.push({
+                        name: 'Metabolic Panel',
+                        tests: ['HbA1c', 'Fasting Glucose', 'Fasting Insulin', 'HOMA-IR'],
+                        reason: 'Oral findings suggest metabolic dysregulation',
+                        priority: diabetesScore >= 5 ? 'High' : 'Moderate'
+                    });
+                }
+
+                // Nutrition
+                const nutritionBadge = document.getElementById('nutritionBadge');
+                const nutritionScore = nutritionBadge ? parseInt(nutritionBadge.textContent) : 0;
+                if (nutritionScore >= 2) {
+                    labs.push({
+                        name: 'Comprehensive Nutritional Panel',
+                        tests: ['Vitamin B12', 'Folate', 'Iron panel', 'Ferritin', 'Zinc', 'Magnesium RBC', 'Vitamin K'],
+                        reason: 'Clinical signs of nutritional deficiencies observed in oral tissues',
+                        priority: 'Moderate'
+                    });
+                }
+
+                // Heavy metals
+                const amalgamsInput = document.getElementById('amalgams');
+                const amalgams = amalgamsInput ? parseInt(amalgamsInput.value) || 0 : 0;
+                if (amalgams >= 6) {
+                    labs.push({
+                        name: 'Heavy Metal Testing',
+                        tests: ['Mercury (urine or blood)', 'Comprehensive toxic metals panel'],
+                        reason: `Multiple amalgam fillings (${amalgams}) - assess mercury burden`,
+                        priority: 'Moderate'
+                    });
+                }
+
+                // Autoimmune
+                const autoimmune = document.getElementById('autoimmune');
+                const dryMouth = document.getElementById('dryMouth');
+                if ((autoimmune && autoimmune.checked) || (dryMouth && dryMouth.checked)) {
+                    labs.push({
+                        name: 'Autoimmune Screening',
+                        tests: ['ANA', 'RF', 'Anti-SSA/SSB (Sjögren\'s)', 'Thyroid panel with antibodies'],
+                        reason: 'Oral manifestations may indicate autoimmune process',
+                        priority: 'Moderate'
+                    });
+                }
+
+                // CV risk
+                const cvBadge = document.getElementById('cvRiskBadge');
+                const cvScore = cvBadge ? parseInt(cvBadge.textContent) : 0;
+                if (cvScore >= 5) {
+                    labs.push({
+                        name: 'Cardiovascular Risk Panel',
+                        tests: ['Lipid panel (advanced)', 'Homocysteine', 'Lipoprotein(a)', 'ApoB'],
+                        reason: 'Significant periodontal disease increases cardiovascular risk',
+                        priority: 'High'
+                    });
+                }
+
+                if (labs.length === 0) {
+                    div.innerHTML = '<p style="color: #6c757d;">No specific lab testing recommended at this time based on oral findings.</p>';
+                } else {
+                    let html = '';
+                    labs.forEach(lab => {
+                        const priorityClass = lab.priority === 'High' ? 'alert-danger' : 'alert-warning';
+                        html += `
+                            <div class="alert ${priorityClass}">
+                                <h3>${lab.name} - ${lab.priority} Priority</h3>
+                                <p><strong>Tests:</strong> ${lab.tests.join(', ')}</p>
+                                <p><strong>Justification:</strong> ${lab.reason}</p>
+                            </div>
+                        `;
+                    });
+                    div.innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error in generateLabRecommendations:', error);
+            }
+        }
+
+        function generateSupplementProtocol() {
+            const div = document.getElementById('supplementProtocol');
+            let protocols = [];
+
+            const perio = document.querySelector('input[name="perio"]:checked');
+            if (perio && (perio.value === 'moderate' || perio.value === 'severe')) {
+                protocols.push({
+                    category: 'Periodontal Support',
+                    supplements: [
+                        {name: 'CoQ10', dose: '100-200mg daily', reason: 'Supports gum tissue health and cellular energy in periodontal tissues'},
+                        {name: 'Omega-3 (EPA/DHA)', dose: '2000mg daily', reason: 'Reduces oral and systemic inflammation'},
+                        {name: 'Vitamin D3 + K2', dose: '5000 IU D3 + 100mcg K2', reason: 'Essential for bone/tooth health and immune function'},
+                        {name: 'Oral Probiotics', dose: 'Per product directions', reason: 'Promotes healthy oral microbiome'},
+                        {name: 'Vitamin C', dose: '1000mg daily', reason: 'Required for collagen synthesis in gum tissue'}
+                    ]
+                });
+            }
+
+            const caries = parseInt(document.getElementById('caries').value) || 0;
+            if (caries >= 3 || document.getElementById('whiteSpots').checked) {
+                protocols.push({
+                    category: 'Caries Prevention & Remineralization',
+                    supplements: [
+                        {name: 'Calcium Hydroxyapatite', dose: '500mg daily', reason: 'Primary mineral for tooth remineralization'},
+                        {name: 'Vitamin D3 + K2', dose: '5000 IU D3 + 100mcg K2', reason: 'Directs calcium to teeth and bones'},
+                        {name: 'Magnesium', dose: '250-400mg daily', reason: 'Works with calcium for tooth structure'},
+                        {name: 'Trace Minerals', dose: 'Per product directions', reason: 'Supports enamel integrity'},
+                        {name: 'Xylitol', dose: '6-10g daily (gum/mints)', reason: 'Reduces cavity-causing bacteria'}
+                    ]
+                });
+            }
+
+            if (document.getElementById('geographicTongue').checked || document.getElementById('angularCheilitis').checked) {
+                protocols.push({
+                    category: 'B-Vitamin Complex for Oral Tissue Health',
+                    supplements: [
+                        {name: 'B-Complex (high potency)', dose: 'Per product directions', reason: 'Clinical signs of B-vitamin deficiency in oral tissues'},
+                        {name: 'Zinc', dose: '30mg daily', reason: 'Supports tissue healing and immune function'},
+                        {name: 'Iron (if indicated)', dose: 'As directed by labs', reason: 'Angular cheilitis may indicate iron deficiency'}
+                    ]
+                });
+            }
+
+            if (document.getElementById('bruxism').checked || document.getElementById('tmjPain').checked) {
+                protocols.push({
+                    category: 'TMJ/Bruxism Support',
+                    supplements: [
+                        {name: 'Magnesium Glycinate', dose: '400mg before bed', reason: 'Relaxes jaw muscles, supports sleep quality'},
+                        {name: 'B-Complex', dose: 'Per product directions', reason: 'Supports nervous system health'},
+                        {name: 'Adaptogens (Ashwagandha)', dose: '300-500mg daily', reason: 'Helps manage stress response'}
+                    ]
+                });
+            }
+
+            const inflammationScore = parseInt(document.getElementById('inflammationBadge').textContent);
+            if (inflammationScore >= 5) {
+                protocols.push({
+                    category: 'Anti-Inflammatory Support',
+                    supplements: [
+                        {name: 'Curcumin (bioavailable)', dose: '500-1000mg daily', reason: 'Potent anti-inflammatory for oral and systemic inflammation'},
+                        {name: 'Omega-3', dose: '2000mg EPA/DHA', reason: 'Reduces inflammatory markers'},
+                        {name: 'Resveratrol', dose: '200-500mg daily', reason: 'Antioxidant and anti-inflammatory properties'},
+                        {name: 'Quercetin', dose: '500mg daily', reason: 'Natural anti-inflammatory and antihistamine'}
+                    ]
+                });
+            }
+
+            if (protocols.length === 0) {
+                div.innerHTML = '<p style="color: #6c757d;">No specific supplement protocols indicated at this time.</p>';
+            } else {
+                let html = '';
+                protocols.forEach(p => {
+                    html += `<div class="protocol-item">
+                        <h4>${p.category}</h4>
+                        <table>
+                            <tr><th>Supplement</th><th>Dosage</th><th>Oral Health Justification</th></tr>`;
+                    p.supplements.forEach(s => {
+                        html += `<tr>
+                            <td><strong>${s.name}</strong></td>
+                            <td>${s.dose}</td>
+                            <td>${s.reason}</td>
+                        </tr>`;
+                    });
+                    html += '</table></div>';
+                });
+                div.innerHTML = html;
+            }
+        }
+
+        function generateReferrals() {
+            const div = document.getElementById('referralRecommendations');
+            let referrals = [];
+
+            const inflammationScore = parseInt(document.getElementById('inflammationBadge').textContent);
+            const nutritionScore = parseInt(document.getElementById('nutritionBadge').textContent);
+            
+            if (inflammationScore >= 7 || nutritionScore >= 5) {
+                referrals.push({
+                    type: 'Functional Medicine/Chiropractor',
+                    reason: 'High systemic inflammatory burden and/or multiple nutritional deficiencies indicated by oral findings',
+                    priority: 'High',
+                    notes: 'Patient would benefit from comprehensive functional medicine evaluation and advanced testing'
+                });
+            }
+
+            const diabetesScore = parseInt(document.getElementById('diabetesRiskBadge').textContent);
+            if (diabetesScore >= 5 && !document.getElementById('diabetes').checked) {
+                referrals.push({
+                    type: 'Primary Care Physician/Endocrinologist',
+                    reason: 'Oral findings suggest undiagnosed metabolic dysfunction',
+                    priority: 'High',
+                    notes: 'Recommend medical evaluation for diabetes screening'
+                });
+            }
+
+            const cvScore = parseInt(document.getElementById('cvRiskBadge').textContent);
+            if (cvScore >= 7) {
+                referrals.push({
+                    type: 'Cardiologist',
+                    reason: 'Severe periodontal disease with cardiovascular risk factors',
+                    priority: 'High',
+                    notes: 'Bidirectional relationship between periodontal disease and CVD'
+                });
+            }
+
+            if (document.getElementById('sleepApnea').checked || document.getElementById('bruxism').checked) {
+                referrals.push({
+                    type: 'Sleep Medicine Specialist',
+                    reason: 'Sleep disorder suspected based on oral findings',
+                    priority: 'Moderate',
+                    notes: 'Consider sleep study evaluation; dental appliance therapy may be indicated'
+                });
+            }
+
+            if (document.getElementById('dryMouth').checked && document.getElementById('autoimmune').checked) {
+                referrals.push({
+                    type: 'Rheumatologist',
+                    reason: 'Xerostomia with autoimmune history suggests Sjögren\'s syndrome',
+                    priority: 'Moderate',
+                    notes: 'Autoimmune workup recommended'
+                });
+            }
+
+            if (referrals.length === 0) {
+                div.innerHTML = '<div class="alert alert-info">No urgent referrals indicated at this time. Continue with oral health optimization and monitoring.</div>';
+            } else {
+                let html = '';
+                referrals.forEach(r => {
+                    const alertClass = r.priority === 'High' ? 'alert-danger' : 'alert-warning';
+                    html += `
+                        <div class="alert ${alertClass}">
+                            <h3>${r.type} - ${r.priority} Priority</h3>
+                            <p><strong>Reason:</strong> ${r.reason}</p>
+                            <p><strong>Notes:</strong> ${r.notes}</p>
+                        </div>
+                    `;
+                });
+                div.innerHTML = html;
+            }
+        }
+
+        function generateReport() {
+            try {
+                const name = document.getElementById('patientName').value || 'Patient';
+                const complaint = document.getElementById('chiefComplaint').value || 'None documented';
+                
+                let html = `
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1>Oral-Systemic Health Assessment</h1>
+                        <h3>${name}</h3>
+                        <p>${new Date().toLocaleDateString()}</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Chief Complaint</h3>
+                        <p>${complaint}</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Risk Assessment Summary</h3>
+                        <div class="grid-2">
+                            <div>
+                                <p><span class="risk-indicator ${getBadgeClass('cvRiskBadge')}"></span>
+                                <strong>Cardiovascular Risk:</strong> ${document.getElementById('cvRiskBadge')?.textContent || '0'}</p>
+                            </div>
+                            <div>
+                                <p><span class="risk-indicator ${getBadgeClass('diabetesRiskBadge')}"></span>
+                                <strong>Metabolic Risk:</strong> ${document.getElementById('diabetesRiskBadge')?.textContent || '0'}</p>
+                            </div>
+                            <div>
+                                <p><span class="risk-indicator ${getBadgeClass('inflammationBadge')}"></span>
+                                <strong>Inflammatory Burden:</strong> ${document.getElementById('inflammationBadge')?.textContent || '0'}</p>
+                            </div>
+                            <div>
+                                <p><span class="risk-indicator ${getBadgeClass('nutritionBadge')}"></span>
+                                <strong>Nutritional Risk:</strong> ${document.getElementById('nutritionBadge')?.textContent || '0'}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Key Oral Findings</h3>
+                        ${getOralFindings()}
+                    </div>
+
+                    <div class="card">
+                        <h3>Recommended Action Plan</h3>
+                        <ol style="line-height: 1.8;">
+                            <li><strong>Immediate Oral Health:</strong> Address active infections, periodontal therapy, optimize home care</li>
+                            <li><strong>Laboratory Testing:</strong> See detailed recommendations above</li>
+                            <li><strong>Nutritional Support:</strong> Implement supplement protocol for oral health</li>
+                            <li><strong>Specialist Referrals:</strong> As indicated in referral section</li>
+                            <li><strong>Follow-up:</strong> Re-evaluate in 3 months or sooner if acute issues arise</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 8px;">
+                        <p style="font-size: 0.9em; color: #856404;">
+                            <strong>Disclaimer:</strong> This assessment evaluates oral health and documented oral-systemic connections. 
+                            All recommendations support oral health outcomes. This is not a medical diagnosis. 
+                            Patients should consult with their physician for comprehensive medical evaluation and treatment of systemic conditions.
+                        </p>
+                    </div>
+                `;
+
+                const reportDiv = document.getElementById('finalReport');
+                if (reportDiv) {
+                    reportDiv.innerHTML = html;
+                }
+                showTab(7);
+            } catch (error) {
+                console.error('Error in generateReport:', error);
+                alert('Error generating report. Please check console for details.');
+            }
+        }
+
+        function getBadgeClass(badgeId) {
+            try {
+                const badge = document.getElementById(badgeId);
+                if (!badge) return '';
+                if (badge.classList.contains('high')) return 'high';
+                if (badge.classList.contains('moderate')) return 'moderate';
+                if (badge.classList.contains('low')) return 'low';
+                return '';
+            } catch (error) {
+                console.error('Error in getBadgeClass:', error);
+                return '';
+            }
+        }
+
+        function getOralFindings() {
+            try {
+                let findings = [];
+                
+                const perio = document.querySelector('input[name="perio"]:checked');
+                if (perio && perio.value !== 'healthy') {
+                    findings.push(`Periodontal status: ${perio.value}`);
+                }
+
+                const caries = parseInt(document.getElementById('caries')?.value) || 0;
+                if (caries > 0) findings.push(`Active caries: ${caries}`);
+
+                const missing = parseInt(document.getElementById('missingTeeth')?.value) || 0;
+                if (missing > 0) findings.push(`Missing teeth: ${missing}`);
+
+                if (document.getElementById('erosion')?.checked) findings.push('Enamel erosion present');
+                if (document.getElementById('geographicTongue')?.checked) findings.push('Geographic tongue');
+                if (document.getElementById('angularCheilitis')?.checked) findings.push('Angular cheilitis');
+                if (document.getElementById('bruxism')?.checked) findings.push('Bruxism (wear facets)');
+                if (document.getElementById('dryMouth')?.checked) findings.push('Xerostomia');
+
+                if (findings.length === 0) return '<p>No significant findings</p>';
+                return '<ul>' + findings.map(f => `<li>${f}</li>`).join('') + '</ul>';
+            } catch (error) {
+                console.error('Error in getOralFindings:', error);
+                return '<p>Error retrieving findings</p>';
+            }
+        }
+
+        function showExportOptions() {
+            const modal = document.getElementById('exportModal');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeExportModal() {
+            const modal = document.getElementById('exportModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function exportAsJSON() {
+            try {
+                // Collect all assessment data
+                const assessmentData = {
+                    patientInfo: {
+                        name: document.getElementById('patientName')?.value || '',
+                        dob: document.getElementById('dob')?.value || '',
+                        assessmentDate: document.getElementById('assessmentDate')?.value || '',
+                        gender: document.getElementById('gender')?.value || '',
+                        chiefComplaint: document.getElementById('chiefComplaint')?.value || ''
+                    },
+                    medicalHistory: {
+                        diabetes: document.getElementById('diabetes')?.checked || false,
+                        cvd: document.getElementById('cvd')?.checked || false,
+                        autoimmune: document.getElementById('autoimmune')?.checked || false,
+                        osteoporosis: document.getElementById('osteoporosis')?.checked || false,
+                        gerd: document.getElementById('gerd')?.checked || false,
+                        sleepApnea: document.getElementById('sleepApnea')?.checked || false
+                    },
+                    oralExam: {
+                        probingDepth: document.getElementById('probingDepth')?.value || '',
+                        bleeding: document.getElementById('bleeding')?.value || '',
+                        attachmentLoss: document.getElementById('attachmentLoss')?.value || '',
+                        perioStatus: document.querySelector('input[name="perio"]:checked')?.value || '',
+                        caries: document.getElementById('caries')?.value || '',
+                        missingTeeth: document.getElementById('missingTeeth')?.value || '',
+                        amalgams: document.getElementById('amalgams')?.value || '',
+                        erosion: document.getElementById('erosion')?.checked || false,
+                        geographicTongue: document.getElementById('geographicTongue')?.checked || false,
+                        angularCheilitis: document.getElementById('angularCheilitis')?.checked || false,
+                        paleMucosa: document.getElementById('paleMucosa')?.checked || false,
+                        dryMouth: document.getElementById('dryMouth')?.checked || false,
+                        bruxism: document.getElementById('bruxism')?.checked || false,
+                        tmjPain: document.getElementById('tmjPain')?.checked || false,
+                        headaches: document.getElementById('headaches')?.checked || false
+                    },
+                    toothMeridian: {
+                        flaggedTeeth: flaggedTeeth
+                    },
+                    riskScores: {
+                        cardiovascular: document.getElementById('cvRiskBadge')?.textContent || '0',
+                        diabetes: document.getElementById('diabetesRiskBadge')?.textContent || '0',
+                        inflammation: document.getElementById('inflammationBadge')?.textContent || '0',
+                        nutrition: document.getElementById('nutritionBadge')?.textContent || '0',
+                        stress: document.getElementById('stressBadge')?.textContent || '0'
+                    },
+                    timestamp: new Date().toISOString()
+                };
+
+                const jsonString = JSON.stringify(assessmentData, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const patientName = document.getElementById('patientName')?.value || 'Patient';
+                const date = new Date().toISOString().split('T')[0];
+                a.download = `Assessment_${patientName.replace(/\s+/g, '-')}_${date}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                closeExportModal();
+                alert('✅ JSON data exported successfully!');
+            } catch (error) {
+                console.error('Error in exportAsJSON:', error);
+                alert('❌ Error exporting JSON. Please try again.');
+            }
+        }
+
+        function exportAsHTML() {
+            try {
+                // Generate report first
+                const name = document.getElementById('patientName')?.value || 'Patient';
+                const complaint = document.getElementById('chiefComplaint')?.value || 'None documented';
+                const date = new Date().toLocaleDateString();
+                
+                const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Oral-Systemic Health Assessment - ${name}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid #2193b0; padding-bottom: 20px; }
+        .header h1 { color: #2193b0; margin: 0; }
+        .section { margin: 30px 0; padding: 20px; background: #f8f9fa; border-left: 4px solid #2193b0; }
+        .section h2 { color: #2193b0; margin-top: 0; }
+        .risk-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .risk-item { padding: 15px; background: white; border-radius: 8px; }
+        .risk-high { border-left: 4px solid #dc3545; }
+        .risk-moderate { border-left: 4px solid #ffc107; }
+        .risk-low { border-left: 4px solid #28a745; }
+        ul { margin: 10px 0; }
+        .disclaimer { background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 30px; font-size: 0.9em; }
+        @media print {
+            body { margin: 20px; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🦷 Oral-Systemic Health Assessment</h1>
+        <h2>${name}</h2>
+        <p>Assessment Date: ${date}</p>
+    </div>
+
+    <div class="section">
+        <h2>Chief Complaint</h2>
+        <p>${complaint}</p>
+    </div>
+
+    <div class="section">
+        <h2>Risk Assessment Summary</h2>
+        <div class="risk-summary">
+            <div class="risk-item ${getRiskClass('cvRiskBadge')}">
+                <strong>Cardiovascular Risk:</strong> ${document.getElementById('cvRiskBadge')?.textContent || '0'}
+            </div>
+            <div class="risk-item ${getRiskClass('diabetesRiskBadge')}">
+                <strong>Metabolic Risk:</strong> ${document.getElementById('diabetesRiskBadge')?.textContent || '0'}
+            </div>
+            <div class="risk-item ${getRiskClass('inflammationBadge')}">
+                <strong>Inflammatory Burden:</strong> ${document.getElementById('inflammationBadge')?.textContent || '0'}
+            </div>
+            <div class="risk-item ${getRiskClass('nutritionBadge')}">
+                <strong>Nutritional Risk:</strong> ${document.getElementById('nutritionBadge')?.textContent || '0'}
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Key Oral Findings</h2>
+        ${getOralFindings()}
+    </div>
+
+    <div class="section">
+        <h2>Recommended Laboratory Testing</h2>
+        ${document.getElementById('labRecommendations')?.innerHTML || '<p>No labs recommended</p>'}
+    </div>
+
+    <div class="section">
+        <h2>Supplement Protocol</h2>
+        ${document.getElementById('supplementProtocol')?.innerHTML || '<p>No supplements recommended</p>'}
+    </div>
+
+    <div class="section">
+        <h2>Referral Recommendations</h2>
+        ${document.getElementById('referralRecommendations')?.innerHTML || '<p>No referrals needed</p>'}
+    </div>
+
+    <div class="disclaimer">
+        <strong>Disclaimer:</strong> This assessment evaluates oral health and documented oral-systemic connections. 
+        All recommendations support oral health outcomes. This is not a medical diagnosis. 
+        Patients should consult with their physician for comprehensive medical evaluation and treatment of systemic conditions.
+    </div>
+</body>
+</html>`;
+
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const patientName = document.getElementById('patientName')?.value || 'Patient';
+                const dateStr = new Date().toISOString().split('T')[0];
+                a.download = `Assessment-Report_${patientName.replace(/\s+/g, '-')}_${dateStr}.html`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                closeExportModal();
+                alert('✅ HTML report exported! Open the file and use your browser\'s "Print to PDF" option to create a PDF.');
+            } catch (error) {
+                console.error('Error in exportAsHTML:', error);
+                alert('❌ Error exporting HTML. Please try again.');
+            }
+        }
+
+        function getRiskClass(badgeId) {
+            const badge = document.getElementById(badgeId);
+            if (!badge) return '';
+            if (badge.classList.contains('high')) return 'risk-high';
+            if (badge.classList.contains('moderate')) return 'risk-moderate';
+            if (badge.classList.contains('low')) return 'risk-low';
+            return '';
+        }
+
+        function exportAsCSV() {
+            try {
+                const rows = [];
+                
+                // Headers
+                rows.push(['Assessment Data', 'Value']);
+                rows.push(['']);
+                
+                // Patient Info
+                rows.push(['PATIENT INFORMATION', '']);
+                rows.push(['Name', document.getElementById('patientName')?.value || '']);
+                rows.push(['Date of Birth', document.getElementById('dob')?.value || '']);
+                rows.push(['Assessment Date', document.getElementById('assessmentDate')?.value || '']);
+                rows.push(['Gender', document.getElementById('gender')?.value || '']);
+                rows.push(['Chief Complaint', document.getElementById('chiefComplaint')?.value || '']);
+                rows.push(['']);
+                
+                // Risk Scores
+                rows.push(['RISK SCORES', '']);
+                rows.push(['Cardiovascular Risk', document.getElementById('cvRiskBadge')?.textContent || '0']);
+                rows.push(['Diabetes Risk', document.getElementById('diabetesRiskBadge')?.textContent || '0']);
+                rows.push(['Inflammatory Burden', document.getElementById('inflammationBadge')?.textContent || '0']);
+                rows.push(['Nutritional Risk', document.getElementById('nutritionBadge')?.textContent || '0']);
+                rows.push(['Stress/Sleep Risk', document.getElementById('stressBadge')?.textContent || '0']);
+                rows.push(['']);
+                
+                // Oral Exam
+                rows.push(['ORAL EXAMINATION', '']);
+                rows.push(['Probing Depth (mm)', document.getElementById('probingDepth')?.value || '']);
+                rows.push(['Bleeding on Probing (%)', document.getElementById('bleeding')?.value || '']);
+                rows.push(['Periodontal Status', document.querySelector('input[name="perio"]:checked')?.value || '']);
+                rows.push(['Active Caries', document.getElementById('caries')?.value || '']);
+                rows.push(['Missing Teeth', document.getElementById('missingTeeth')?.value || '']);
+                rows.push(['Amalgam Fillings', document.getElementById('amalgams')?.value || '']);
+                rows.push(['']);
+                
+                // Clinical Findings
+                rows.push(['CLINICAL FINDINGS', 'Present']);
+                rows.push(['Enamel Erosion', document.getElementById('erosion')?.checked ? 'Yes' : 'No']);
+                rows.push(['Geographic Tongue', document.getElementById('geographicTongue')?.checked ? 'Yes' : 'No']);
+                rows.push(['Angular Cheilitis', document.getElementById('angularCheilitis')?.checked ? 'Yes' : 'No']);
+                rows.push(['Pale Mucosa', document.getElementById('paleMucosa')?.checked ? 'Yes' : 'No']);
+                rows.push(['Xerostomia', document.getElementById('dryMouth')?.checked ? 'Yes' : 'No']);
+                rows.push(['Bruxism', document.getElementById('bruxism')?.checked ? 'Yes' : 'No']);
+                rows.push(['TMJ Pain', document.getElementById('tmjPain')?.checked ? 'Yes' : 'No']);
+                
+                // Convert to CSV
+                const csvContent = rows.map(row => 
+                    row.map(cell => `"${cell.toString().replace(/"/g, '""')}"`).join(',')
+                ).join('\n');
+                
+                const blob = new Blob([csvContent], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const patientName = document.getElementById('patientName')?.value || 'Patient';
+                const date = new Date().toISOString().split('T')[0];
+                a.download = `Assessment_${patientName.replace(/\s+/g, '-')}_${date}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                closeExportModal();
+                alert('✅ CSV file exported successfully!');
+            } catch (error) {
+                console.error('Error in exportAsCSV:', error);
+                alert('❌ Error exporting CSV. Please try again.');
+            }
+        }
+
+        function printReport() {
+            try {
+                // First generate the report if not already done
+                if (!document.getElementById('finalReport').querySelector('.card')) {
+                    generateReport();
+                }
+                
+                // Add print-specific styles
+                const style = document.createElement('style');
+                style.id = 'print-styles';
+                style.textContent = `
+                    @media print {
+                        body * {
+                            visibility: hidden;
+                        }
+                        .tabs, .action-buttons, .disclaimer {
+                            display: none !important;
+                        }
+                        #finalReport, #finalReport * {
+                            visibility: visible;
+                        }
+                        #finalReport {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                        }
+                        .card {
+                            page-break-inside: avoid;
+                        }
+                        .header {
+                            background: none !important;
+                            color: #000 !important;
+                            -webkit-print-color-adjust: exact;
+                            print-color-adjust: exact;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Switch to report tab
+                showTab(7);
+                
+                // Small delay to ensure rendering
+                setTimeout(() => {
+                    window.print();
+                    // Remove print styles after printing
+                    setTimeout(() => {
+                        const printStyle = document.getElementById('print-styles');
+                        if (printStyle) printStyle.remove();
+                    }, 100);
+                }, 100);
+            } catch (error) {
+                console.error('Error in printReport:', error);
+                alert('❌ Error printing report. Please try again.');
+            }
+        }
+
+        // Initialize - set default date
+        try {
+            const dateInput = document.getElementById('assessmentDate');
+            if (dateInput) {
+                dateInput.valueAsDate = new Date();
+            }
+        } catch (error) {
+            console.error('Error in initialization:', error);
+        }
+    </script>
+</body>
+</html>
