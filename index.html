@@ -1858,14 +1858,14 @@
             ]});
         }
 
-        // Post-antibiotic support (managing effects of dental prescriptions)
-        dentalProtocols.push({category:'Post-Antibiotic Microbiome Recovery',scope:'Dentists prescribe antibiotics for abscesses, pericoronitis, and surgical prophylaxis. Managing downstream effects of your own prescription (dysbiosis, secondary oral candidiasis, GI disruption) is standard of care.',supps:[
-            {name:'Multi-strain Probiotic',dose:'50+ billion CFU daily, take 2 hrs apart from antibiotic',reason:'Prevents antibiotic-associated diarrhea and secondary oral/GI Candida overgrowth from dental antibiotic prescriptions',contra:null},
-            {name:'S. boulardii',dose:'500mg 2x daily during and 2 weeks after antibiotic course',reason:'Antibiotic-resistant probiotic yeast; prevents C. difficile colonization and secondary oral candidiasis',contra:null},
-            {name:'Oral Probiotic (S. salivarius K12)',dose:'1 lozenge daily after antibiotic course completed',reason:'Recolonizes oral microbiome with commensal species after antibiotic disruption',contra:null}
-        ]});
-        // Only show post-abx if not already showing (remove if no antibiotics relevant)
-        // Always include as reference protocol since dentists prescribe antibiotics routinely
+        // Post-antibiotic support - show as reference when antibiotics may be prescribed
+        if(stage >= 2 || numVal('caries') >= 3 || ck('oralCandidiasis')) {
+            dentalProtocols.push({category:'Post-Antibiotic Microbiome Recovery (Reference)',scope:'Dentists prescribe antibiotics for abscesses, pericoronitis, and surgical prophylaxis. Managing downstream effects of your own prescription is standard of care. Use when prescribing dental antibiotics.',supps:[
+                {name:'Multi-strain Probiotic',dose:'50+ billion CFU daily, 2 hrs apart from antibiotic',reason:'Prevents antibiotic-associated diarrhea and secondary oral/GI Candida overgrowth',contra:null},
+                {name:'S. boulardii',dose:'500mg 2x daily during + 2 weeks after course',reason:'Antibiotic-resistant probiotic yeast; prevents C. difficile and secondary oral candidiasis',contra:null},
+                {name:'Oral Probiotic (S. salivarius K12)',dose:'1 lozenge daily after antibiotic course completed',reason:'Recolonizes oral microbiome with commensal species after disruption',contra:null}
+            ]});
+        }
 
         // ==========================================
         // OUTSIDE DENTAL SCOPE: Refer to physician/FM
@@ -1960,7 +1960,7 @@
         if(stage >= 3) refs.push({type:'Periodontist',priority:'High',reason:`Stage ${stage}${grade?' Grade '+grade:''} periodontitis requires specialist periodontal management`,notes:'Consider regenerative therapy, systemic antimicrobials based on pathogen testing'});
         if(infScore >= 15 || nutScore >= 12) refs.push({type:'Functional Medicine Practitioner',priority:'High',reason:'High systemic inflammatory burden and/or nutritional deficiencies indicated by oral findings',notes:'Comprehensive functional evaluation, advanced lab interpretation, integrative protocol development'});
         if(cvScore >= 12) refs.push({type:'Cardiologist',priority:'High',reason:'Significant periodontal-cardiovascular risk profile',notes:'Advanced lipid testing, CIMT consideration, coordinate perio treatment with cardiac risk management'});
-        if(numVal('dmScore') >= 8 && !ck('hxDiabetes')) refs.push({type:'Endocrinologist / PCP',priority:'High',reason:'Oral findings suggest undiagnosed metabolic dysfunction',notes:'Diabetes screening, metabolic syndrome evaluation'});
+        if((parseInt(document.getElementById('dmScore')?.textContent)||0) >= 8 && !ck('hxDiabetes')) refs.push({type:'Endocrinologist / PCP',priority:'High',reason:'Oral findings suggest undiagnosed metabolic dysfunction',notes:'Diabetes screening, metabolic syndrome evaluation'});
         if(slpScore >= 10) refs.push({type:'Sleep Medicine Specialist',priority:'High',reason:`Airway and sleep findings score ${slpScore}/25; high probability of undiagnosed sleep-disordered breathing`,notes:'Polysomnography recommended; dental sleep appliance may be indicated'});
         if(ck('hxSleepApnea') && ck('bruxism')) refs.push({type:'Dental Sleep Medicine',priority:'Moderate',reason:'Diagnosed OSA with bruxism; mandibular advancement device evaluation',notes:'Coordinate with sleep physician; consider combination therapy'});
         if(ck('dryMouth') && (ck('hxAutoimmune') || ck('hxRA'))) refs.push({type:'Rheumatologist',priority:'Moderate',reason:'Xerostomia with autoimmune history suggests Sjögren\'s syndrome evaluation',notes:'Anti-SSA/SSB testing, salivary gland biopsy consideration'});
@@ -2211,7 +2211,7 @@
         if(slp >= 10) refs.push({type:'Sleep Medicine',priority:'High',reason:'Airway/sleep findings warrant polysomnography'});
         if(ck('leukoplakia')) refs.push({type:'Oral Pathologist',priority:'High',reason:'Leukoplakia: biopsy to rule out dysplasia'});
         if(ck('flagPregnant')&&stage>=2) refs.push({type:'OB/GYN Coordination',priority:'High',reason:'Active perio in pregnancy'});
-        if(numVal('dmScore')>=8&&!ck('hxDiabetes')) refs.push({type:'PCP/Endocrinology',priority:'Moderate',reason:'Undiagnosed metabolic risk'});
+        if((parseInt(document.getElementById('dmScore')?.textContent)||0)>=8&&!ck('hxDiabetes')) refs.push({type:'PCP/Endocrinology',priority:'Moderate',reason:'Undiagnosed metabolic risk'});
         return refs;
     }
 
