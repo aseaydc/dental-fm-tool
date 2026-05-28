@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oral-Systemic Health Integration Platform v2</title>
+    <title>OraLink - Oral-Systemic Integration Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -447,6 +447,7 @@
             /* Hide all panels, show ONLY the report */
             .panel { display: none !important; }
             .panel#panel11 { display: block !important; }
+            .panel#panel12 { display: block !important; }
             .print-only { display: block; }
             .no-print { display: none; }
             /* Clean up report for print */
@@ -467,20 +468,26 @@
 </head>
 <body>
     <div class="app-header">
-        <div>
-            <h1>Oral-Systemic Health Integration Platform</h1>
-            <div class="subtitle">Comprehensive Dental Functional Medicine Assessment &middot; v2.0</div>
+        <div style="display:flex;align-items:center;gap:14px;flex:1;">
+            <img src="data:image/png;base64,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" alt="OraLink" style="height:100px;object-fit:contain;">
         </div>
         <div class="header-controls">
+            <select id="patientSelect" onchange="loadPatientFromList()" style="max-width:200px;">
+                <option value="">-- Select Patient --</option>
+            </select>
+            <button class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:white;font-size:0.82em;" onclick="saveCurrentPatient()">Save Patient</button>
+            <button class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:white;font-size:0.82em;" onclick="newPatient()">New Patient</button>
+            <button class="btn btn-outline" style="border-color:#f39c12;color:#f39c12;font-size:0.82em;" onclick="loadDemoPatient()">Demo Patient</button>
             <select id="numberingSystem" onchange="toggleNumbering()">
                 <option value="universal">Universal (1-32)</option>
                 <option value="fdi">FDI (11-48)</option>
             </select>
-            <label style="display:flex;align-items:center;gap:5px;font-size:0.8em;color:rgba(255,255,255,0.9);cursor:pointer;" title="When enabled, amalgam findings generate toxin risk scores and metal detox referrals. When disabled, amalgams are documented but do not trigger systemic recommendations.">
+            <label style="display:flex;align-items:center;gap:5px;font-size:0.8em;color:rgba(255,255,255,0.9);cursor:pointer;" title="When enabled, amalgam findings generate toxin risk scores and metal detox referrals.">
                 <input type="checkbox" id="amalgamConcern" checked onchange="updateAll()" style="accent-color:#e67e22;">
                 Amalgam Biocompatibility
             </label>
-            <button class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:white;" onclick="showImportModal()">Import JSON</button>
+            <button class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:white;font-size:0.82em;" onclick="showImportModal()">Import JSON</button>
+            <button class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:white;font-size:0.82em;" onclick="showModal('brandingModal')">⚙ Practice</button>
         </div>
     </div>
 
@@ -524,7 +531,13 @@
                 <span class="nav-num">11</span> Referrals
             </div>
             <div class="nav-item" onclick="goPanel(11)">
-                <span class="nav-num">12</span> Report
+                <span class="nav-num">12</span> Ins. Narrative
+            </div>
+            <div class="nav-item" onclick="goPanel(12)">
+                <span class="nav-num">13</span> Reports
+            </div>
+            <div class="nav-item" onclick="goPanel(13)">
+                <span class="nav-num">📊</span> Hygiene Dashboard
             </div>
         </div>
 
@@ -537,7 +550,7 @@
                 <div class="card">
                     <div class="grid-3">
                         <div class="field"><label>Patient Name</label><input type="text" id="patientName"></div>
-                        <div class="field"><label>Date of Birth</label><input type="date" id="dob"></div>
+                        <div class="field"><label>Date of Birth</label><input type="date" id="dob" onchange="updateAll()"></div>
                         <div class="field"><label>Assessment Date</label><input type="date" id="assessmentDate"></div>
                     </div>
                     <div class="grid-3">
@@ -563,6 +576,19 @@
                         </div>
                     </div>
                     <div class="grid-3">
+                        <div class="field">
+                            <label>Treating Hygienist</label>
+                            <select id="hygienistSelect">
+                                <option value="">Select Hygienist</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Manage Hygienists</label>
+                            <div style="display:flex;gap:6px;">
+                                <input type="text" id="newHygienistName" placeholder="Add hygienist name..." style="flex:1;">
+                                <button class="btn btn-outline btn-sm" onclick="addHygienist()">Add</button>
+                            </div>
+                        </div>
                         <div class="field">
                             <label>Population Flags</label>
                             <div style="display:flex;gap:16px;margin-top:6px;">
@@ -653,7 +679,7 @@
                     </div>
                     <div class="field" style="margin-top:12px;">
                         <label>Other Medications (free text)</label>
-                        <textarea id="medOther" rows="2" placeholder="List other relevant medications..."></textarea>
+                        <textarea id="medOther" rows="2" placeholder="Enter medications separated by commas (e.g., Zoloft, Lipitor, Lisinopril, Metoprolol)..." oninput="updateAll()"></textarea>
                     </div>
                 </div>
             </div>
@@ -910,7 +936,7 @@
             <!-- PANEL 5: Tooth Chart -->
             <div class="panel" id="panel5">
                 <div class="panel-title">Interactive Tooth Chart</div>
-                <div class="panel-desc">Click any tooth to select it, then mark its status. Per-tooth material and pathology tracking with meridian correlations. Toggle numbering system in the header.</div>
+                <div class="panel-desc">Click any tooth to select it, then mark its status. Per-tooth material and pathology tracking with focal infection correlations. Optional traditional meridian view available via toggle.</div>
 
                 <div class="card" style="overflow-x:auto;">
                     <svg id="toothSVG" width="100%" viewBox="0 0 520 590" style="max-width:600px;margin:0 auto;display:block;">
@@ -1140,12 +1166,21 @@
             <!-- PANEL 9: Supplements -->
             <div class="panel" id="panel9">
                 <div class="panel-title">Supplement Recommendations</div>
-                <div class="panel-desc">Split into two categories: supplements within dental scope of practice (dentist prescribes directly for oral conditions) and systemic needs identified by oral findings (refer to physician or functional medicine practitioner).</div>
+                <div class="panel-desc">Split into two categories: supplements within dental scope of practice (dentist prescribes directly for oral conditions) and systemic needs identified by oral findings (refer to appropriate medical provider).</div>
 
                 <div class="alert alert-info"><strong>Scope of Practice:</strong> In most U.S. states including North Carolina, dentists may prescribe supplements and vitamins directly related to the treatment of a dental or oral condition. Systemic interventions require referral to a licensed medical provider.</div>
 
                 <div id="pregnancySupAlert" class="alert alert-danger" style="display:none;">
                     🤰 <strong>PREGNANCY FLAG ACTIVE:</strong> Supplement recommendations have been adjusted for safety. Verify all supplements with the patient's OB/GYN.
+                </div>
+
+                <div id="drugNutrientCard" class="card" style="display:none;">
+                    <div class="card-head">
+                        <h3>⚠ Drug-Nutrient Interactions &amp; Depletions</h3>
+                        <span class="badge badge-mod" id="interactionCount">0</span>
+                    </div>
+                    <div class="alert alert-warn" style="font-size:0.85em;">Based on medications documented in Medical History. These depletions directly affect oral tissue health and may explain clinical findings. Supplementation addresses the drug-induced deficiency, not the medical condition.</div>
+                    <div id="drugNutrientContent"></div>
                 </div>
 
                 <div id="dentalScopeSupplements">
@@ -1167,18 +1202,152 @@
                 <div id="referralContent"></div>
             </div>
 
-            <!-- PANEL 11: Report -->
+            <!-- PANEL 11: Insurance Narrative Generator (Gemini inputs + Grok output) -->
             <div class="panel" id="panel11">
-                <div class="panel-title">Assessment Reports</div>
-                <div class="panel-desc">Two report formats available: Clinical Summary (concise, for your chart) and Patient Report (plain language, with supplement list and treatment steps). Use the buttons in the bottom action bar.</div>
-                <div id="reportContent">
-                    <div style="text-align:center;padding:40px;">
-                        <p style="color:var(--text-light);margin-bottom:20px;">Select a report type from the action bar below.</p>
-                        <div style="display:flex;gap:12px;justify-content:center;">
-                            <button class="btn btn-accent" onclick="generateFullReport()">Clinical Summary (3-5 pages)</button>
-                            <button class="btn btn-primary" onclick="generatePatientReport()">Patient Report (take-home)</button>
+                <div class="panel-title">Insurance Narrative Generator</div>
+                <div class="panel-desc">Configure clinical parameters below. The narrative updates live and is optimized for D4341/D4342 pre-authorization and claims submission. Uses clean, factual language that insurance AI systems and human reviewers accept.</div>
+
+                <div class="card">
+                    <div class="card-head"><h3>Probing Depth &amp; Attachment Loss</h3></div>
+                    <div class="alert alert-info" style="font-size:0.85em;">Auto-populated from Perio Staging panel. Adjust to match your site-specific charting if needed.</div>
+                    <div class="grid-4">
+                        <div class="field"><label>Min Pocket Depth (mm)</label><input type="number" id="narMinPD" min="1" max="15" oninput="updateNarrative()"></div>
+                        <div class="field"><label>Max Pocket Depth (mm)</label><input type="number" id="narMaxPD" min="1" max="15" oninput="updateNarrative()"></div>
+                        <div class="field"><label>Min CAL (mm)</label><input type="number" id="narMinCAL" min="0" max="15" oninput="updateNarrative()"></div>
+                        <div class="field"><label>Max CAL (mm)</label><input type="number" id="narMaxCAL" min="0" max="15" oninput="updateNarrative()"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><h3>Quadrant &amp; CDT Code Selection</h3></div>
+                    <div class="alert alert-info" style="font-size:0.85em;">D4341 = 4+ teeth affected per quadrant. D4342 = 1-3 teeth. Select the appropriate code for each quadrant based on your charting.</div>
+                    <div class="grid-2">
+                        <div>
+                            <div class="section-label">D4341 (4+ Teeth per Quadrant)</div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_ur41" data-quad="Upper Right" data-code="D4341" checked onchange="updateNarrative()"><label for="nq_ur41">Upper Right (Q1)</label></div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_ul41" data-quad="Upper Left" data-code="D4341" checked onchange="updateNarrative()"><label for="nq_ul41">Upper Left (Q2)</label></div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_ll41" data-quad="Lower Left" data-code="D4341" checked onchange="updateNarrative()"><label for="nq_ll41">Lower Left (Q3)</label></div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_lr41" data-quad="Lower Right" data-code="D4341" checked onchange="updateNarrative()"><label for="nq_lr41">Lower Right (Q4)</label></div>
+                        </div>
+                        <div>
+                            <div class="section-label">D4342 (1-3 Teeth per Quadrant)</div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_ur42" data-quad="Upper Right" data-code="D4342" onchange="updateNarrative()"><label for="nq_ur42">Upper Right (Q1)</label></div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_ul42" data-quad="Upper Left" data-code="D4342" onchange="updateNarrative()"><label for="nq_ul42">Upper Left (Q2)</label></div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_ll42" data-quad="Lower Left" data-code="D4342" onchange="updateNarrative()"><label for="nq_ll42">Lower Left (Q3)</label></div>
+                            <div class="check-item"><input type="checkbox" class="nar-quad" id="nq_lr42" data-quad="Lower Right" data-code="D4342" onchange="updateNarrative()"><label for="nq_lr42">Lower Right (Q4)</label></div>
                         </div>
                     </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><h3>Local Factors &amp; Attached Documentation</h3></div>
+                    <div class="check-grid">
+                        <div class="check-item"><input type="checkbox" id="narCalculus" checked onchange="updateNarrative()"><label for="narCalculus">Subgingival calculus and biofilm present</label></div>
+                        <div class="check-item"><input type="checkbox" id="narSuppuration" onchange="updateNarrative()"><label for="narSuppuration">Suppuration / purulent exudate noted</label></div>
+                        <div class="check-item"><input type="checkbox" id="narRecession" onchange="updateNarrative()"><label for="narRecession">Gingival recession present</label></div>
+                    </div>
+                    <div class="section-label">Documentation Attached (check all that apply)</div>
+                    <div class="check-grid">
+                        <div class="check-item"><input type="checkbox" class="nar-doc" id="ndCharting" data-doc="Complete 6-point periodontal charting" checked onchange="updateNarrative()"><label for="ndCharting">Full periodontal charting</label></div>
+                        <div class="check-item"><input type="checkbox" class="nar-doc" id="ndRadio" data-doc="Current radiographs (bitewings and periapical radiographs)" checked onchange="updateNarrative()"><label for="ndRadio">Radiographs (FMX/BWX/PA)</label></div>
+                        <div class="check-item"><input type="checkbox" class="nar-doc" id="ndSalivary" data-doc="Salivary pathogen test results (OralDNA MyPerioPath)" onchange="updateNarrative()"><label for="ndSalivary">Salivary diagnostic results</label></div>
+                        <div class="check-item"><input type="checkbox" class="nar-doc" id="ndPhotos" data-doc="Clinical intraoral photographs" onchange="updateNarrative()"><label for="ndPhotos">Clinical photographs</label></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <h3>Generated Narrative</h3>
+                        <button class="btn btn-primary" onclick="copyNarrative()" style="font-size:0.85em;">Copy to Clipboard</button>
+                    </div>
+                    <div id="narrativeOutput" class="narrative-box" style="background:#f8fdf8;border:1.5px solid var(--success);font-family:'DM Sans',sans-serif;font-size:0.9em;line-height:1.7;cursor:text;" contenteditable="true">Configure parameters above...</div>
+                    <div class="alert alert-info" style="font-size:0.85em;margin-top:12px;">
+                        Click the narrative to edit before copying. Paste into your PMS clinical notes or attach as documentation with the claim.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><h3>Pre-Submission Checklist</h3></div>
+                    <div style="font-size:0.88em;" id="denialChecklist"></div>
+                </div>
+            </div>
+
+            <!-- PANEL 12: Reports -->
+            <div class="panel" id="panel12">
+                <div class="panel-title">Assessment Reports</div>
+                <div class="panel-desc">Clinical Summary for your chart. Patient Report as a take-home treatment plan with phased supplements.</div>
+                <div id="reportContent">
+                    <div style="text-align:center;padding:40px;">
+                        <p style="color:var(--text-light);margin-bottom:20px;">Select a report type:</p>
+                        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                            <button class="btn btn-accent" onclick="generateFullReport()">Clinical Summary</button>
+                            <button class="btn btn-primary" onclick="generatePatientReport()">Patient Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 13: Hygiene Production Dashboard -->
+            <div class="panel" id="panel13">
+                <div class="panel-title">Hygiene Production Dashboard</div>
+                <div class="panel-desc">Track assessments completed, SRP cases identified, supplements recommended, and salivary tests ordered per hygienist. Use this data to set and monitor department production goals.</div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <h3>Dashboard Period</h3>
+                        <div style="display:flex;gap:10px;align-items:center;">
+                            <select id="dashPeriod" onchange="refreshDashboard()">
+                                <option value="30">Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                                <option value="180">Last 6 Months</option>
+                                <option value="365">Last 12 Months</option>
+                                <option value="all">All Time</option>
+                            </select>
+                            <button class="btn btn-outline btn-sm" onclick="refreshDashboard()">Refresh</button>
+                        </div>
+                    </div>
+
+                    <div class="grid-4" id="dashSummaryCards">
+                        <div class="score-card neutral"><div class="score-val" id="dashTotalAssessments">0</div><div class="score-label">Total Assessments</div></div>
+                        <div class="score-card neutral"><div class="score-val" id="dashTotalSRP">0</div><div class="score-label">SRP Cases Identified</div></div>
+                        <div class="score-card neutral"><div class="score-val" id="dashTotalSupps">0</div><div class="score-label">Supplement Plans Created</div></div>
+                        <div class="score-card neutral"><div class="score-val" id="dashTotalTests">0</div><div class="score-label">Salivary Tests Ordered</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><h3>Per-Hygienist Performance</h3></div>
+                    <table id="dashHygienistTable">
+                        <thead>
+                            <tr>
+                                <th>Hygienist</th>
+                                <th>Assessments</th>
+                                <th>SRP Identified</th>
+                                <th>SRP Rate</th>
+                                <th>Supplements Planned</th>
+                                <th>Supp. Rate</th>
+                                <th>Salivary Tests</th>
+                                <th>Airway Flags</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dashHygienistBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><h3>Monthly Trend</h3></div>
+                    <div id="dashTrendContent" style="min-height:100px;"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-head"><h3>Revenue Impact Estimate</h3></div>
+                    <div class="alert alert-info" style="font-size:0.85em;">Estimates based on assessment data. Actual supplement revenue depends on patient conversion rate and product pricing.</div>
+                    <div class="grid-3">
+                        <div class="field"><label>Avg Supplement Order Value ($)</label><input type="number" id="dashAvgOrder" value="55" min="0" oninput="refreshDashboard()"></div>
+                        <div class="field"><label>Patient Conversion Rate (%)</label><input type="number" id="dashConversion" value="25" min="0" max="100" oninput="refreshDashboard()"></div>
+                        <div class="field"><label>Avg Practice Margin (%)</label><input type="number" id="dashMargin" value="40" min="0" max="100" oninput="refreshDashboard()"></div>
+                    </div>
+                    <div id="dashRevenueEstimate" style="margin-top:12px;"></div>
                 </div>
             </div>
 
@@ -1190,9 +1359,10 @@
             <button class="btn btn-outline" id="prevBtn" onclick="prevPanel()">← Previous</button>
             <button class="btn btn-primary" id="nextBtn" onclick="nextPanel()">Next →</button>
         </div>
-        <div style="display:flex;gap:10px;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
             <button class="btn btn-accent" onclick="generateFullReport()">Clinical Report</button>
             <button class="btn btn-primary" onclick="generatePatientReport()">Patient Report</button>
+            <button class="btn btn-outline" onclick="downloadPDF()">Download PDF</button>
             <button class="btn btn-outline" onclick="exportJSON()">Export JSON</button>
             <button class="btn btn-outline" onclick="window.print()">Print</button>
         </div>
@@ -1213,10 +1383,48 @@
             </div>
         </div>
     </div>
+
+    <!-- Practice Branding Modal -->
+    <div class="modal-overlay" id="brandingModal">
+        <div class="modal">
+            <h2>Practice Branding</h2>
+            <p style="margin-bottom:16px;color:var(--text-light);font-size:0.9em;">Personalize patient reports with your practice logo and information. Saved locally on this computer.</p>
+            <div class="field">
+                <label>Practice Name</label>
+                <input type="text" id="practiceName" placeholder="e.g., Smile Dental Associates" oninput="saveBranding()">
+            </div>
+            <div class="field">
+                <label>Provider Name &amp; Credentials</label>
+                <input type="text" id="providerName" placeholder="e.g., Dr. Jane Smith, DDS" oninput="saveBranding()">
+            </div>
+            <div class="field">
+                <label>Practice Address (one line)</label>
+                <input type="text" id="practiceAddress" placeholder="e.g., 123 Main St, Garner, NC 27529" oninput="saveBranding()">
+            </div>
+            <div class="field">
+                <label>Practice Phone</label>
+                <input type="text" id="practicePhone" placeholder="e.g., (919) 555-0100" oninput="saveBranding()">
+            </div>
+            <div class="field">
+                <label>Practice Logo</label>
+                <div style="display:flex;align-items:center;gap:16px;">
+                    <input type="file" id="logoUpload" accept="image/*" onchange="handleLogoUpload()" style="padding:8px;">
+                    <div id="logoPreview" style="width:80px;height:80px;border:1px dashed var(--border);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                        <span style="font-size:0.75em;color:var(--text-light);">No logo</span>
+                    </div>
+                </div>
+                <p style="font-size:0.78em;color:var(--text-light);margin-top:6px;">Recommended: PNG or JPG, square or horizontal, under 500KB. Displays at top of patient reports.</p>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:16px;">
+                <button class="btn btn-primary" onclick="closeModal('brandingModal')">Done</button>
+                <button class="btn btn-outline" onclick="clearBranding()">Clear All Branding</button>
+            </div>
+        </div>
+    </div>
     <script>
     // ============= GLOBAL STATE =============
     let currentPanel = 0;
-    const totalPanels = 12;
+    const totalPanels = 14;
     let selectedToothNum = null;
     let toothData = {}; // {toothNum: {statuses: Set, materials: Set}}
 
@@ -1289,6 +1497,8 @@
         const isPed = ck('flagPediatric');
         const pedCard = document.getElementById('pediatricAirwayCard');
         if(pedCard) pedCard.style.display = isPed ? 'block' : 'none';
+        // Refresh dashboard when navigating to it
+        if(idx === 13) refreshDashboard();
     }
     function nextPanel() { if(currentPanel < totalPanels-1) goPanel(currentPanel+1); }
     function prevPanel() { if(currentPanel > 0) goPanel(currentPanel-1); }
@@ -1552,6 +1762,7 @@
         try {
             calcAllRisks();
             generateLabRecs();
+            generateDrugNutrientCheck();
             generateSupplements();
             generateReferrals();
             updateSTOPBANG();
@@ -1565,6 +1776,10 @@
             if(pedCard) pedCard.style.display = ck('flagPediatric') ? 'block' : 'none';
             // Auto-calc age
             autoCalcAge();
+            // Sync perio staging data into narrative fields
+            syncPerioToNarrative();
+            // Keep narrative in sync
+            updateNarrative();
         } catch(e) { console.error('updateAll error:', e); }
     }
 
@@ -1938,7 +2153,292 @@
         div.innerHTML = html;
     }
 
-    // ============= SUPPLEMENT PROTOCOL (SCOPE-AWARE) =============
+    // ============= DRUG-NUTRIENT INTERACTION & DEPLETION ENGINE =============
+    function generateDrugNutrientCheck() {
+        const card = document.getElementById('drugNutrientCard');
+        const content = document.getElementById('drugNutrientContent');
+        const countBadge = document.getElementById('interactionCount');
+        if(!card || !content) return;
+
+        let items = [];
+
+        // PPI depletions (omeprazole, pantoprazole, etc.)
+        if(ck('medPPI')) {
+            items.push({
+                drug: 'Proton Pump Inhibitors',
+                type: 'depletion',
+                nutrients: [
+                    {name:'Magnesium',impact:'PPIs block intestinal Mg absorption. Hypomagnesemia impairs enamel mineralization and increases periodontal bone loss. FDA black box warning for long-term PPI use.',supplement:'Magnesium Glycinate 300mg daily'},
+                    {name:'Calcium',impact:'Reduced gastric acid impairs calcium solubility and absorption. Increases alveolar bone demineralization and caries risk.',supplement:'Calcium Hydroxyapatite 500mg daily (take apart from PPI)'},
+                    {name:'Vitamin B12',impact:'Gastric acid required to cleave B12 from food proteins. Deficiency presents as glossitis, angular cheilitis, burning mouth syndrome.',supplement:'Methylcobalamin 1,000mcg sublingual daily (bypasses gastric absorption)'},
+                    {name:'Iron',impact:'Non-heme iron requires acid for conversion to absorbable ferrous form. Contributes to pale oral mucosa, angular cheilitis.',supplement:'Iron bisglycinate if ferritin confirms deficiency (refer to physician)'},
+                    {name:'Zinc',impact:'Reduced absorption impairs oral mucosal healing, taste perception, and salivary antimicrobial function.',supplement:'Zinc picolinate 30mg daily with food'}
+                ]
+            });
+        }
+
+        // Metformin depletions
+        if(ck('medMetformin')) {
+            items.push({
+                drug: 'Metformin',
+                type: 'depletion',
+                nutrients: [
+                    {name:'Vitamin B12',impact:'Metformin inhibits B12-intrinsic factor complex absorption in the ileum. 10-30% of long-term users develop deficiency. Oral signs: glossitis, angular cheilitis, burning tongue, pale mucosa.',supplement:'Methylcobalamin 1,000mcg sublingual daily'},
+                    {name:'Folate',impact:'Impaired folate metabolism compounds B12 deficiency effects on oral mucosal cell turnover.',supplement:'5-MTHF 800mcg daily (methylated form)'},
+                    {name:'CoQ10',impact:'Metformin may reduce CoQ10 synthesis. Relevant for periodontal patients where gingival tissue energy metabolism is already compromised.',supplement:'Ubiquinol 100-200mg daily'}
+                ]
+            });
+        }
+
+        // Anticoagulant interactions
+        if(ck('medAnticoag')) {
+            items.push({
+                drug: 'Anticoagulants (Warfarin, DOACs)',
+                type: 'interaction',
+                nutrients: [
+                    {name:'Vitamin K2 (MK-7)',impact:'K2 activates clotting factors. Sudden changes in K2 intake can destabilize INR. However, consistent low-dose K2 is preferred over avoidance per current research.',supplement:'If on warfarin: coordinate with prescriber before starting K2. DOACs: less interaction concern.'},
+                    {name:'Omega-3 / Fish Oil',impact:'EPA/DHA have mild antiplatelet activity. Additive bleeding risk at doses above 3g/day. Clinically relevant for post-SRP bleeding management.',supplement:'Cap at 2,000mg EPA/DHA daily. Monitor for prolonged bleeding post-procedures.'},
+                    {name:'CoQ10',impact:'CoQ10 is structurally similar to vitamin K and may reduce warfarin efficacy. Case reports of decreased INR.',supplement:'If on warfarin: monitor INR when initiating CoQ10. Notify prescribing physician.'},
+                    {name:'Curcumin',impact:'Inhibits platelet aggregation and may potentiate anticoagulant effect.',supplement:'Use with caution. Consider omitting from Phase 2 protocol if on warfarin.'}
+                ]
+            });
+        }
+
+        // Calcium Channel Blockers
+        if(ck('medCCB')) {
+            items.push({
+                drug: 'Calcium Channel Blockers (Amlodipine, Nifedipine)',
+                type: 'depletion',
+                nutrients: [
+                    {name:'CoQ10',impact:'CCBs may inhibit mitochondrial CoQ10 function. Combined with periodontal disease, this compounds gingival tissue energy deficit.',supplement:'Ubiquinol 200mg daily (supports both CCB depletion and perio tissue)'},
+                    {name:'Vitamin D',impact:'Some CCBs interfere with vitamin D metabolism. Relevant for alveolar bone maintenance.',supplement:'D3 5,000 IU + K2 200mcg daily'}
+                ]
+            });
+            items.push({
+                drug: 'Calcium Channel Blockers - Oral Side Effect',
+                type: 'interaction',
+                nutrients: [
+                    {name:'Gingival Hyperplasia',impact:'Amlodipine and nifedipine cause drug-induced gingival overgrowth in 6-83% of patients (dose and hygiene dependent). Not a nutrient depletion but directly impacts periodontal treatment planning.',supplement:'Meticulous oral hygiene + CoQ10 for tissue health. Consider medical consultation for drug substitution if severe.'}
+                ]
+            });
+        }
+
+        // Bisphosphonates
+        if(ck('medBisphosphonates')) {
+            items.push({
+                drug: 'Bisphosphonates (Alendronate, Risedronate, Zoledronic acid)',
+                type: 'interaction',
+                nutrients: [
+                    {name:'Calcium + D3',impact:'Bisphosphonates require adequate calcium and D3 to function. Deficiency reduces drug efficacy for bone density while MRONJ risk remains.',supplement:'Calcium hydroxyapatite 500mg + D3 2,000 IU daily (physician should be managing this)'},
+                    {name:'MRONJ Risk Flag',impact:'Medication-related osteonecrosis of the jaw. Any invasive dental procedure (extractions, implants, periodontal surgery) requires medical clearance and drug holiday consideration.',supplement:'No supplement addresses MRONJ. Flag for medical coordination before any surgical dental procedure.'}
+                ]
+            });
+        }
+
+        // Immunosuppressants
+        if(ck('medImmunosup')) {
+            items.push({
+                drug: 'Immunosuppressants (Cyclosporine, Tacrolimus, Biologics)',
+                type: 'interaction',
+                nutrients: [
+                    {name:'Vitamin D',impact:'Immunosuppressants accelerate D3 catabolism. Deeper deficiency impairs periodontal immune surveillance and alveolar bone metabolism.',supplement:'D3 5,000 IU daily with monitoring (coordinate with prescriber)'},
+                    {name:'Oral Probiotics',impact:'Live bacterial strains may pose theoretical risk in severely immunocompromised patients. Risk is low for oral probiotic lozenges but clinical judgment required.',supplement:'Use oral probiotics with caution. Discuss with prescribing physician if patient is severely immunocompromised.'},
+                    {name:'Gingival Overgrowth',impact:'Cyclosporine causes drug-induced gingival hyperplasia similar to CCBs. Affects periodontal treatment planning.',supplement:'CoQ10 for tissue health. Enhanced oral hygiene protocol.'}
+                ]
+            });
+        }
+
+        // Phenytoin
+        if(ck('medPhenytoin')) {
+            items.push({
+                drug: 'Phenytoin / Anticonvulsants',
+                type: 'depletion',
+                nutrients: [
+                    {name:'Folate',impact:'Phenytoin impairs folate absorption and metabolism. Deficiency causes megaloblastic changes in oral mucosa, glossitis, and gingival inflammation.',supplement:'5-MTHF 800-1,000mcg daily'},
+                    {name:'Vitamin D',impact:'Phenytoin induces hepatic CYP450 enzymes that accelerate D3 catabolism. Contributes to alveolar bone loss.',supplement:'D3 5,000 IU + K2 200mcg daily'},
+                    {name:'Vitamin K',impact:'Accelerated K metabolism. Contributes to bleeding tendency and impaired bone metabolism.',supplement:'K2 (MK-7) 200mcg daily'},
+                    {name:'Gingival Overgrowth',impact:'Drug-induced gingival hyperplasia in ~50% of patients. The most common drug-induced oral side effect in dentistry.',supplement:'Meticulous oral hygiene essential. Folate supplementation may reduce severity (limited evidence). Surgical reduction if severe.'}
+                ]
+            });
+        }
+
+        // Xerostomia-causing medications
+        if(ck('medXerostomia')) {
+            items.push({
+                drug: 'Xerostomia-Inducing Medications (SSRIs, Anticholinergics, Antihistamines, Antihypertensives)',
+                type: 'interaction',
+                nutrients: [
+                    {name:'Salivary Function',impact:'500+ medications list xerostomia as a side effect. Reduced salivary flow eliminates the mouth\'s primary antimicrobial, buffering, and remineralization system. Dramatically increases caries rate, candidiasis risk, and periodontal disease progression.',supplement:'Omega-3 2,000mg daily (supports salivary gland function) + xylitol 6-10g daily (stimulates residual flow) + hydroxyapatite toothpaste (compensates for lost remineralization)'},
+                    {name:'Mineral Absorption',impact:'Many xerostomia-causing drugs (particularly PPIs, diuretics, and anticholinergics) simultaneously impair mineral absorption, compounding the oral health impact.',supplement:'Comprehensive mineral support: Mg glycinate 300mg, Zinc 30mg, D3/K2'}
+                ]
+            });
+        }
+
+        // ==========================================
+        // FREE-TEXT MEDICATION LOOKUP ENGINE
+        // ==========================================
+        const medText = (val('medOther') || '').toLowerCase();
+        if(medText.length > 1) {
+            const drugDB = [
+                // SSRIs / SNRIs / Antidepressants
+                {keywords:['zoloft','sertraline'],drug:'Sertraline (Zoloft) - SSRI',type:'depletion',nutrients:[
+                    {name:'Calcium',impact:'SSRIs reduce bone mineral density by inhibiting serotonin-mediated osteoblast signaling. Accelerates alveolar bone loss in periodontal patients.',supplement:'Calcium hydroxyapatite 500mg daily + weight-bearing exercise'},
+                    {name:'Sodium',impact:'SSRI-induced SIADH can cause hyponatremia. Monitor if patient reports confusion, dizziness, or falls.',supplement:'Monitor serum sodium. Not a supplement issue; medical management.'},
+                    {name:'Vitamin D',impact:'SSRIs may accelerate vitamin D catabolism. Combined with bone density effects, worsens alveolar bone metabolism.',supplement:'D3 5,000 IU + K2 200mcg daily'},
+                    {name:'Folate / B12',impact:'SSRIs increase homocysteine in some patients, suggesting impaired methylation. Elevated homocysteine correlates with periodontal vascular damage.',supplement:'5-MTHF 800mcg + methylcobalamin 1,000mcg daily'},
+                    {name:'CoQ10',impact:'SSRIs may deplete CoQ10 via mitochondrial interference. Relevant for periodontal tissue energy metabolism.',supplement:'Ubiquinol 100-200mg daily'},
+                    {name:'Melatonin',impact:'Serotonin is the precursor to melatonin. SSRI-altered serotonin metabolism can disrupt sleep, contributing to bruxism.',supplement:'Melatonin 0.5-3mg before bed if sleep-related bruxism present'},
+                    {name:'Xerostomia',impact:'Sertraline causes dry mouth in 11-14% of patients. Reduces salivary antimicrobial defense and remineralization.',supplement:'Xylitol 6-10g daily + omega-3 for salivary gland support'}
+                ]},
+                {keywords:['lexapro','escitalopram'],drug:'Escitalopram (Lexapro) - SSRI',type:'depletion',nutrients:[
+                    {name:'Calcium / Vitamin D',impact:'Same SSRI bone density mechanism as sertraline. Alveolar bone loss risk.',supplement:'Calcium hydroxyapatite 500mg + D3 5,000 IU + K2 200mcg daily'},
+                    {name:'Folate',impact:'May impair methylation cycle. Oral mucosal signs: glossitis, aphthous ulcers.',supplement:'5-MTHF 800mcg daily'},
+                    {name:'Sodium',impact:'SIADH risk. Medical monitoring.',supplement:'Medical management, not supplement-addressable'},
+                    {name:'Xerostomia',impact:'Dry mouth common. Increases caries and periodontal risk.',supplement:'Xylitol + omega-3 + hydroxyapatite toothpaste'}
+                ]},
+                {keywords:['prozac','fluoxetine'],drug:'Fluoxetine (Prozac) - SSRI',type:'depletion',nutrients:[
+                    {name:'Calcium / Vitamin D',impact:'SSRI bone density reduction. Alveolar bone implications.',supplement:'Ca hydroxyapatite 500mg + D3 5,000 IU + K2 200mcg'},
+                    {name:'Folate / B12',impact:'Impaired methylation. Oral signs: glossitis, angular cheilitis.',supplement:'5-MTHF 800mcg + methylcobalamin 1,000mcg'},
+                    {name:'Melatonin / CoQ10',impact:'Serotonin pathway disruption; mitochondrial effects.',supplement:'CoQ10 100mg + melatonin if bruxism present'},
+                    {name:'Xerostomia',impact:'Common side effect.',supplement:'Xylitol + omega-3 + salivary support protocol'}
+                ]},
+                {keywords:['effexor','venlafaxine'],drug:'Venlafaxine (Effexor) - SNRI',type:'depletion',nutrients:[
+                    {name:'Calcium / Vitamin D',impact:'SNRI bone density effects similar to SSRIs.',supplement:'Ca hydroxyapatite 500mg + D3 5,000 IU + K2 200mcg'},
+                    {name:'Sodium',impact:'Higher SIADH risk than SSRIs.',supplement:'Medical monitoring'},
+                    {name:'CoQ10',impact:'Mitochondrial interference.',supplement:'Ubiquinol 100-200mg daily'},
+                    {name:'Xerostomia',impact:'Higher dry mouth incidence than SSRIs (up to 22%).',supplement:'Aggressive salivary support: xylitol + omega-3 + hydroxyapatite'}
+                ]},
+                {keywords:['cymbalta','duloxetine'],drug:'Duloxetine (Cymbalta) - SNRI',type:'depletion',nutrients:[
+                    {name:'Calcium / Vitamin D / Sodium',impact:'Same SNRI class effects on bone and sodium.',supplement:'Ca hydroxyapatite + D3/K2 + medical sodium monitoring'},
+                    {name:'Xerostomia',impact:'Dry mouth in up to 15% of patients.',supplement:'Xylitol + omega-3 + hydroxyapatite toothpaste'}
+                ]},
+                // Statins
+                {keywords:['lipitor','atorvastatin'],drug:'Atorvastatin (Lipitor) - Statin',type:'depletion',nutrients:[
+                    {name:'CoQ10',impact:'Statins inhibit HMG-CoA reductase, which shares the mevalonate pathway with CoQ10 synthesis. Depletes CoQ10 in all tissues including gingival epithelium. Compounds periodontal tissue energy deficit.',supplement:'Ubiquinol 200mg daily (essential co-prescription with any statin)'},
+                    {name:'Vitamin D',impact:'Some evidence statins impair 25-OH-D conversion.',supplement:'D3 5,000 IU + K2 200mcg daily'},
+                    {name:'Vitamin K2',impact:'Statins may interfere with K2-dependent matrix Gla protein activation. Affects vascular and alveolar bone calcification patterns.',supplement:'K2 (MK-7) 200mcg daily'}
+                ]},
+                {keywords:['crestor','rosuvastatin'],drug:'Rosuvastatin (Crestor) - Statin',type:'depletion',nutrients:[
+                    {name:'CoQ10',impact:'Same mevalonate pathway depletion as all statins. Gingival tissue energy deficit.',supplement:'Ubiquinol 200mg daily'},
+                    {name:'Vitamin D / K2',impact:'Conversion and utilization impairment.',supplement:'D3 5,000 IU + K2 200mcg daily'}
+                ]},
+                {keywords:['zocor','simvastatin'],drug:'Simvastatin (Zocor) - Statin',type:'depletion',nutrients:[
+                    {name:'CoQ10',impact:'Mevalonate pathway depletion.',supplement:'Ubiquinol 200mg daily'},
+                    {name:'Vitamin D',impact:'May impair conversion.',supplement:'D3 5,000 IU daily'}
+                ]},
+                // Blood Pressure
+                {keywords:['lisinopril','enalapril','ramipril','benazepril'],drug:'ACE Inhibitors (Lisinopril, Enalapril, etc.)',type:'depletion',nutrients:[
+                    {name:'Zinc',impact:'ACE inhibitors chelate zinc. Zinc deficiency impairs oral mucosal healing, taste perception (dysgeusia is a known ACE-I side effect), and salivary immune peptide production.',supplement:'Zinc picolinate 30mg daily with food'},
+                    {name:'Magnesium',impact:'May increase renal magnesium excretion.',supplement:'Magnesium glycinate 300mg daily'}
+                ]},
+                {keywords:['losartan','valsartan','irbesartan','olmesartan'],drug:'ARBs (Losartan, Valsartan, etc.)',type:'depletion',nutrients:[
+                    {name:'Zinc',impact:'Similar zinc chelation to ACE inhibitors. Same oral mucosal and taste implications.',supplement:'Zinc picolinate 30mg daily'},
+                    {name:'Potassium',impact:'ARBs increase potassium retention. Not a depletion but a caution: avoid potassium supplements without monitoring.',supplement:'Do NOT supplement potassium. Medical monitoring.'}
+                ]},
+                {keywords:['metoprolol','atenolol','propranolol','carvedilol'],drug:'Beta-Blockers (Metoprolol, Atenolol, etc.)',type:'depletion',nutrients:[
+                    {name:'CoQ10',impact:'Beta-blockers inhibit CoQ10-dependent mitochondrial enzymes. Gingival tissue impact in periodontal patients.',supplement:'Ubiquinol 100-200mg daily'},
+                    {name:'Melatonin',impact:'Beta-blockers block pineal beta-1 receptors, reducing melatonin synthesis. Contributes to sleep disruption and bruxism.',supplement:'Melatonin 0.5-3mg before bed if sleep/bruxism issues present'},
+                    {name:'Xerostomia',impact:'Beta-blockers reduce salivary flow.',supplement:'Xylitol + omega-3 for salivary support'}
+                ]},
+                {keywords:['hydrochlorothiazide','hctz','chlorthalidone'],drug:'Thiazide Diuretics (HCTZ, Chlorthalidone)',type:'depletion',nutrients:[
+                    {name:'Magnesium',impact:'Thiazides increase renal magnesium wasting. Magnesium depletion impairs enamel mineralization and masticatory muscle function (bruxism).',supplement:'Magnesium glycinate 400mg daily'},
+                    {name:'Zinc',impact:'Increased urinary zinc excretion. Oral mucosal healing impairment.',supplement:'Zinc picolinate 30mg daily'},
+                    {name:'Potassium',impact:'Classic thiazide depletion. Medical management.',supplement:'Medical monitoring. Potassium-rich diet.'},
+                    {name:'CoQ10',impact:'Diuretic-induced CoQ10 depletion documented.',supplement:'Ubiquinol 100mg daily'}
+                ]},
+                {keywords:['furosemide','lasix','bumetanide'],drug:'Loop Diuretics (Furosemide/Lasix)',type:'depletion',nutrients:[
+                    {name:'Calcium',impact:'Increases renal calcium excretion. Accelerates alveolar bone demineralization.',supplement:'Calcium hydroxyapatite 500mg + D3/K2'},
+                    {name:'Magnesium / Zinc / Potassium',impact:'Broad mineral wasting. Oral implications: enamel integrity, mucosal healing, muscle function.',supplement:'Mg glycinate 400mg + Zinc 30mg. Potassium: medical management.'},
+                    {name:'Vitamin B1 (Thiamine)',impact:'Loop diuretics deplete thiamine. Relevant for patients with burning mouth syndrome.',supplement:'B-complex with 50mg thiamine'}
+                ]},
+                // Diabetes
+                {keywords:['glipizide','glyburide','glimepiride'],drug:'Sulfonylureas (Glipizide, Glyburide)',type:'depletion',nutrients:[
+                    {name:'CoQ10',impact:'Sulfonylureas may impair CoQ10 synthesis. Combined with diabetes-related periodontal tissue damage.',supplement:'Ubiquinol 200mg daily'}
+                ]},
+                // Anti-inflammatory / Pain
+                {keywords:['ibuprofen','advil','motrin','naproxen','aleve'],drug:'NSAIDs (Ibuprofen, Naproxen)',type:'depletion',nutrients:[
+                    {name:'Folate',impact:'NSAIDs may impair folate absorption and metabolism. Oral signs: glossitis, aphthous ulcers.',supplement:'5-MTHF 800mcg daily if chronic NSAID use'},
+                    {name:'Iron',impact:'Chronic NSAID use causes GI micro-bleeding, depleting iron stores over time. Oral signs: pale mucosa, angular cheilitis.',supplement:'Monitor ferritin. Iron bisglycinate if confirmed deficiency (refer to physician).'},
+                    {name:'Vitamin C',impact:'NSAIDs may reduce vitamin C levels. Impacts gingival collagen synthesis.',supplement:'Buffered vitamin C 1,000mg daily'}
+                ]},
+                {keywords:['prednisone','prednisolone','dexamethasone','methylprednisolone'],drug:'Corticosteroids (Prednisone, etc.)',type:'depletion',nutrients:[
+                    {name:'Calcium / Vitamin D',impact:'Corticosteroids are the #1 drug cause of osteoporosis. Directly suppress osteoblasts and calcium absorption. Critical for alveolar bone.',supplement:'Calcium hydroxyapatite 1,000mg + D3 5,000 IU + K2 200mcg daily'},
+                    {name:'Magnesium / Zinc / Potassium',impact:'Broad mineral depletion from increased renal excretion.',supplement:'Mg glycinate 400mg + Zinc 30mg daily'},
+                    {name:'Vitamin C',impact:'Corticosteroids deplete vitamin C. Impairs gingival wound healing post-procedure.',supplement:'Buffered vitamin C 1,000-2,000mg daily'},
+                    {name:'B vitamins',impact:'Accelerated B6 and folate metabolism.',supplement:'Methylated B-complex daily'},
+                    {name:'Oral Candidiasis',impact:'Immunosuppressive effect increases oral candidiasis risk, especially with inhaled corticosteroids.',supplement:'Oral probiotics + antifungal if symptomatic. Rinse mouth after inhaled steroid use.'}
+                ]},
+                // GI
+                {keywords:['pepcid','famotidine'],drug:'Famotidine (Pepcid) - H2 Blocker',type:'depletion',nutrients:[
+                    {name:'B12 / Calcium / Iron / Zinc',impact:'H2 blockers reduce gastric acid, impairing absorption of acid-dependent nutrients. Less severe than PPIs but same mechanism.',supplement:'B12 1,000mcg sublingual + mineral support if long-term use'}
+                ]},
+                // Thyroid
+                {keywords:['synthroid','levothyroxine','tirosint'],drug:'Levothyroxine (Synthroid)',type:'interaction',nutrients:[
+                    {name:'Calcium / Iron / Magnesium',impact:'These minerals bind levothyroxine and reduce absorption by 40-60%. Critical spacing requirement affects supplement timing.',supplement:'Take ALL calcium, iron, and magnesium supplements at least 4 HOURS apart from levothyroxine. Morning thyroid med, evening minerals.'},
+                    {name:'Zinc / Selenium',impact:'Zinc and selenium are required cofactors for T4 to T3 conversion and thyroid peroxidase function.',supplement:'Zinc 30mg + selenium 200mcg daily (taken 4hrs from levothyroxine)'}
+                ]},
+                // Oral Contraceptives / HRT
+                {keywords:['birth control','oral contraceptive','estrogen','premarin','yaz','ortho','nuvaring'],drug:'Oral Contraceptives / Estrogen Therapy',type:'depletion',nutrients:[
+                    {name:'B vitamins (B6, B12, Folate)',impact:'OCs deplete B6, B12, and folate. Oral manifestations: glossitis, angular cheilitis, gingival inflammation independent of plaque levels.',supplement:'Methylated B-complex daily'},
+                    {name:'Magnesium / Zinc',impact:'Increased excretion of both minerals.',supplement:'Mg glycinate 300mg + Zinc 30mg daily'},
+                    {name:'Vitamin C',impact:'Estrogen increases vitamin C catabolism. Impacts gingival collagen integrity.',supplement:'Buffered vitamin C 1,000mg daily'},
+                    {name:'Gingival Inflammation',impact:'Estrogen and progesterone increase gingival vascular permeability and inflammatory response to plaque. P. intermedia is estrogen-responsive.',supplement:'Enhanced oral hygiene + CoQ10 for gingival tissue support'}
+                ]},
+                // Acid Reflux (non-PPI)
+                {keywords:['tums','calcium carbonate antacid'],drug:'Antacids (Tums, Calcium Carbonate)',type:'interaction',nutrients:[
+                    {name:'Iron / Zinc / Magnesium',impact:'Chronic antacid use raises gastric pH, reducing absorption of acid-dependent minerals.',supplement:'Take mineral supplements 2+ hours apart from antacids'},
+                    {name:'Phosphorus',impact:'Aluminum-containing antacids bind phosphorus. Disrupts calcium-phosphorus ratio for enamel remineralization.',supplement:'Ensure adequate dietary phosphorus'}
+                ]},
+                // Seizure / Mood
+                {keywords:['gabapentin','neurontin','lyrica','pregabalin'],drug:'Gabapentinoids (Gabapentin, Pregabalin)',type:'depletion',nutrients:[
+                    {name:'Calcium / Vitamin D',impact:'May impair calcium absorption and vitamin D metabolism. Alveolar bone implications with long-term use.',supplement:'D3 5,000 IU + K2 200mcg + Ca hydroxyapatite 500mg'},
+                    {name:'Xerostomia',impact:'Dry mouth reported in 5-10% of patients.',supplement:'Xylitol + salivary support protocol'}
+                ]}
+            ];
+
+            // Match medications from free text
+            const alreadyMatched = new Set();
+            drugDB.forEach(entry => {
+                for(const kw of entry.keywords) {
+                    if(medText.includes(kw) && !alreadyMatched.has(entry.drug)) {
+                        alreadyMatched.add(entry.drug);
+                        items.push(entry);
+                        break;
+                    }
+                }
+            });
+        }
+
+        // Render
+        if(items.length === 0) {
+            card.style.display = 'none';
+            return;
+        }
+
+        card.style.display = 'block';
+        let totalInteractions = 0;
+        let html = '';
+
+        items.forEach(item => {
+            const isInteraction = item.type === 'interaction';
+            const headerColor = isInteraction ? 'background:#fdedec;color:#922b21;' : 'background:#fef9e7;color:#7d6608;';
+            const badge = isInteraction ? '<span class="badge badge-high" style="float:right;font-size:0.72em;">Interaction</span>' : '<span class="badge badge-mod" style="float:right;font-size:0.72em;">Depletion</span>';
+
+            html += `<div class="protocol-card" style="margin-bottom:12px;">
+                <div class="proto-head" style="${headerColor}">${item.drug} ${badge}</div>
+                <div class="proto-body">
+                    <table><tr><th>Nutrient</th><th>Clinical Impact (Oral Relevance)</th><th>Recommended Action</th></tr>`;
+            item.nutrients.forEach(n => {
+                totalInteractions++;
+                html += `<tr><td><strong>${n.name}</strong></td><td style="font-size:0.85em;">${n.impact}</td><td style="font-size:0.85em;">${n.supplement}</td></tr>`;
+            });
+            html += '</table></div></div>';
+        });
+
+        content.innerHTML = html;
+        if(countBadge) countBadge.textContent = totalInteractions + ' found';
+    }
+
     // ============= SUPPLEMENT PROTOCOL (SCOPE-AWARE, PHASED, DENTAL NECESSITY) =============
     function generateSupplements() {
         const dentalDiv = document.getElementById('dentalSupContent');
@@ -2167,7 +2667,7 @@
         const toxScore = parseInt(document.getElementById('toxinScore')?.textContent) || 0;
 
         if(stage >= 3) refs.push({type:'Periodontist',priority:'High',reason:`Stage ${stage}${grade?' Grade '+grade:''} periodontitis requires specialist periodontal management`,notes:'Consider regenerative therapy, systemic antimicrobials based on pathogen testing'});
-        if(infScore >= 15 || nutScore >= 12) refs.push({type:'Functional Medicine Practitioner',priority:'High',reason:'High systemic inflammatory burden and/or nutritional deficiencies indicated by oral findings',notes:'Comprehensive functional evaluation, advanced lab interpretation, integrative protocol development'});
+        if(infScore >= 15 || nutScore >= 12) refs.push({type:'Integrative Medicine / Nutritional Medicine Provider',priority:'High',reason:'High systemic inflammatory burden and/or nutritional deficiencies indicated by oral findings',notes:'Comprehensive evaluation, advanced lab interpretation, targeted protocol development'});
         if(cvScore >= 12) refs.push({type:'Cardiologist',priority:'High',reason:'Significant periodontal-cardiovascular risk profile',notes:'Advanced lipid testing, CIMT consideration, coordinate perio treatment with cardiac risk management'});
         if((parseInt(document.getElementById('dmScore')?.textContent)||0) >= 8 && !ck('hxDiabetes')) refs.push({type:'Endocrinologist / PCP',priority:'High',reason:'Oral findings suggest undiagnosed metabolic dysfunction',notes:'Diabetes screening, metabolic syndrome evaluation'});
         if(slpScore >= 10) refs.push({type:'Sleep Medicine Specialist',priority:'High',reason:`Airway and sleep findings score ${slpScore}/25; high probability of undiagnosed sleep-disordered breathing`,notes:'Polysomnography recommended; dental sleep appliance may be indicated'});
@@ -2235,6 +2735,7 @@
             .rpt-footer { margin-top:14px; padding:10px; background:#fef9e7; border-radius:4px; font-size:0.78em; color:#7d6608; }
         </style>
         <div class="rpt">
+            ${getBrandingHeader()}
             <h1>Oral-Systemic Assessment: Clinical Summary</h1>
             <div class="rpt-sub">${name} ${dob?'| DOB: '+dob:''} | ${date}</div>
 
@@ -2304,7 +2805,7 @@
         </div>`;
 
         document.getElementById('reportContent').innerHTML = html;
-        goPanel(11);
+        goPanel(12);
     }
 
     // ============= PATIENT-FRIENDLY REPORT =============
@@ -2334,6 +2835,7 @@
             .pt-steps li::before { content:counter(steps); position:absolute; left:0; width:30px; height:30px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85em; }
         </style>
         <div class="pt-rpt">
+            ${getBrandingHeader()}
             <h1>Your Oral Health Assessment</h1>
             <div class="pt-date">${name} | ${date}</div>
 
@@ -2376,7 +2878,206 @@
         </div>`;
 
         document.getElementById('reportContent').innerHTML = html;
-        goPanel(11);
+        goPanel(12);
+    }
+
+    // ============= INSURANCE NARRATIVE GENERATOR =============
+    // ============= SYNC PERIO STAGING TO NARRATIVE FIELDS =============
+    function syncPerioToNarrative() {
+        const maxPD = numVal('probingDepth');
+        const maxCAL = numVal('calMax');
+        const bop = numVal('bleeding');
+        const rbl = numVal('boneLoss');
+
+        // Only sync if perio values exist (don't overwrite with 0)
+        if(maxPD > 0) {
+            const narMaxPD = document.getElementById('narMaxPD');
+            const narMinPD = document.getElementById('narMinPD');
+            if(narMaxPD) narMaxPD.value = maxPD;
+            // Derive min as max minus 1, floored at 4 (clinical threshold for SRP)
+            if(narMinPD) narMinPD.value = Math.max(4, maxPD - 1);
+        }
+        if(maxCAL > 0) {
+            const narMaxCAL = document.getElementById('narMaxCAL');
+            const narMinCAL = document.getElementById('narMinCAL');
+            if(narMaxCAL) narMaxCAL.value = maxCAL;
+            // Derive min as max minus 1, floored at 3 (clinical threshold)
+            if(narMinCAL) narMinCAL.value = Math.max(3, maxCAL - 1);
+        }
+    }
+
+    // ============= LIVE INSURANCE NARRATIVE (Gemini inputs + Grok output) =============
+    function updateNarrative() {
+        const out = document.getElementById('narrativeOutput');
+        if(!out) return;
+
+        const name = val('patientName') || '[Patient Name]';
+        const date = val('assessmentDate') || new Date().toLocaleDateString();
+        const stage = parseInt(val('perioStage')) || 0;
+        const grade = val('perioGrade') || '';
+        const stageNames = {0:'Healthy',1:'I',2:'II',3:'III',4:'IV'};
+        const bleeding = numVal('bleeding');
+        const boneLoss = numVal('boneLoss');
+        const smoking = selVal('smokingStatus');
+        const furcation = selVal('furcation');
+        const mobility = selVal('mobility');
+
+        // Read narrative-specific overrides (populated from perio staging, editable)
+        const minPD = numVal('narMinPD') || 4;
+        const maxPD = numVal('narMaxPD') || 5;
+        const minCAL = numVal('narMinCAL') || 3;
+        const maxCAL = numVal('narMaxCAL') || 4;
+
+        // Age
+        let age = '';
+        const dob = val('dob');
+        if(dob) {
+            const birth = new Date(dob);
+            age = Math.floor((Date.now() - birth.getTime()) / 31557600000) + ' y/o';
+        }
+
+        // Quadrants
+        let quadLines = [];
+        let cdtCodes = new Set();
+        document.querySelectorAll('.nar-quad:checked').forEach(cb => {
+            const q = cb.getAttribute('data-quad');
+            const code = cb.getAttribute('data-code');
+            cdtCodes.add(code);
+            quadLines.push({quad: q, code: code});
+        });
+        const codesUsed = Array.from(cdtCodes).join('/');
+
+        // Pathogens from microbiome panel
+        let pathogens = [];
+        if(ck('pgDetected')) pathogens.push('P. gingivalis' + (selVal('pgLevel')==='high'?' (high concentration)':''));
+        if(ck('tdDetected')) pathogens.push('T. denticola');
+        if(ck('tfDetected')) pathogens.push('T. forsythia');
+        if(ck('aaDetected')) pathogens.push('A. actinomycetemcomitans');
+        if(ck('fnDetected')) pathogens.push('F. nucleatum');
+        if(ck('piDetected')) pathogens.push('P. intermedia');
+
+        // Medical risk factors
+        let risks = [];
+        if(ck('hxDiabetes')) risks.push('diabetes/pre-diabetes');
+        if(ck('hxCVD')) risks.push('cardiovascular disease');
+        if(smoking === 'current') risks.push('current tobacco use (' + numVal('packYears') + ' pack-years)');
+        if(ck('hxAutoimmune') || ck('hxRA')) risks.push('autoimmune condition');
+
+        // Attached docs
+        let docs = [];
+        document.querySelectorAll('.nar-doc:checked').forEach(cb => { docs.push(cb.getAttribute('data-doc')); });
+
+        if(stage < 1) {
+            out.innerText = 'Set periodontal staging (Panel 4) to generate narrative. Stage I+ required for SRP justification.';
+            updateDenialChecklist(codesUsed);
+            return;
+        }
+
+        // ===== BUILD NARRATIVE (Grok clean format) =====
+        let n = '';
+        n += `DOCUMENTATION OF MEDICAL NECESSITY FOR PERIODONTAL THERAPY (${codesUsed || 'D4341/D4342'})\n`;
+        n += `Date: ${date}\n`;
+        n += `Patient: ${name}${age ? ' (' + age + ')' : ''}${dob ? ' | DOB: ' + dob : ''}\n\n`;
+
+        n += `Diagnosis: Generalized Stage ${stageNames[stage]} ${grade ? 'Grade ' + grade + ' ' : ''}Periodontitis (2018 AAP/EFP Classification).\n\n`;
+
+        n += `Clinical Findings:\n`;
+        n += `\u2022 Full-mouth 6-point periodontal charting shows multiple sites with probing depths of ${minPD}\u2013${maxPD}mm`;
+        if(bleeding) n += ` and bleeding on probing in ${bleeding}% of sites`;
+        n += `.\n`;
+        n += `\u2022 Clinical attachment loss (CAL) of ${minCAL}\u2013${maxCAL}mm present.\n`;
+        if(boneLoss) n += `\u2022 Radiographic bone loss of approximately ${boneLoss}% (horizontal${stage >= 3 ? '/vertical' : ''}) measured from the CEJ.\n`;
+        else n += `\u2022 Radiographic bone loss present beyond the CEJ on current radiographs.\n`;
+        if(ck('narCalculus')) n += `\u2022 Subgingival calculus and biofilm present on multiple root surfaces.\n`;
+        if(ck('narSuppuration')) n += `\u2022 Suppuration (purulent exudate) noted at affected sites.\n`;
+        if(ck('narRecession')) n += `\u2022 Gingival recession present at multiple sites.\n`;
+        if(furcation && furcation !== 'none') n += `\u2022 Furcation involvement (${furcation}) present.\n`;
+        if(mobility && mobility !== 'none') n += `\u2022 Tooth mobility (${mobility}) noted.\n`;
+        n += `\n`;
+
+        // Quadrant detail
+        if(quadLines.length > 0) {
+            n += `Procedures Requested:\n`;
+            quadLines.forEach(q => {
+                n += `\u2022 ${q.code} \u2013 ${q.quad} quadrant (${q.code === 'D4341' ? '4+ teeth' : '1-3 teeth'} affected)\n`;
+            });
+            n += `\n`;
+        }
+
+        // Pathogens
+        if(pathogens.length > 0) {
+            n += `Salivary Diagnostic Testing (OralDNA MyPerioPath):\n`;
+            n += `\u2022 Pathogens identified: ${pathogens.join(', ')}.\n`;
+            n += `\u2022 These organisms colonize subgingival biofilm and are not removable by supragingival prophylaxis.\n\n`;
+        }
+
+        // Risk modifiers
+        if(risks.length > 0) {
+            n += `Risk Modifiers: ${risks.join('; ')}${grade === 'C' ? ' (contributing to Grade C rapid-progression designation)' : ''}.\n\n`;
+        }
+
+        // Rationale (the money paragraph)
+        n += `Rationale for Treatment:\n`;
+        n += `Scaling and Root Planing (${codesUsed || 'D4341/D4342'}) is medically necessary to remove subgingival calculus and biofilm, reduce pocket depths, and arrest disease progression. `;
+        n += `Prophylaxis (D1110) is not appropriate as it does not address subgingival deposits or diseased pocket epithelium at depths exceeding 3mm. `;
+        n += `Without treatment, the patient is at increased risk for further periodontal attachment loss, alveolar bone destruction`;
+        if(risks.length > 0) n += `, and worsening of systemic comorbidities`;
+        n += `.`;
+        if(stage >= 3) n += ` Re-evaluation at 4-6 weeks post-SRP will determine need for additional surgical intervention.`;
+        n += ` Periodontal maintenance (D4910) at ${stage >= 3 ? '3' : '3-4'}-month intervals is recommended following active therapy.\n\n`;
+
+        // Supporting docs
+        if(docs.length > 0) {
+            n += `Supporting Documentation Attached:\n`;
+            docs.forEach(d => { n += `\u2022 ${d}\n`; });
+            n += `\n`;
+        }
+
+        // Provider signature
+        let providerSig = '_________________________ DDS/DMD';
+        try {
+            const b = JSON.parse(localStorage.getItem('oshp_branding') || '{}');
+            if(b.providerName) providerSig = b.providerName;
+        } catch(e) {}
+        n += `Provider: ${providerSig} | License #: _________ | Date: ${date}`;
+
+        out.innerText = n;
+        updateDenialChecklist(codesUsed);
+    }
+
+    function updateDenialChecklist(codes) {
+        const div = document.getElementById('denialChecklist');
+        if(!div) return;
+        div.innerHTML = `
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Full-mouth 6-point periodontal charting attached</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Current radiographs attached (FMX or BWX + PAs showing bone loss)</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Probing depths 4mm+ documented on qualifying teeth per quadrant</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Clinical attachment loss (CAL) documented</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Bleeding on probing documented</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Radiographic bone loss visible and noted</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> ${(codes||'').includes('D4341') ? 'Minimum 4 teeth per quadrant with disease (D4341)' : '1-3 teeth per quadrant identified (D4342)'}</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Medical risk factors documented if present</div>
+            <div class="check-item" style="padding:5px 0;"><input type="checkbox"> Previous treatment history noted (if re-treatment or appeal)</div>
+            <div style="margin-top:12px;" class="alert alert-warn" style="font-size:0.85em;">
+                <strong>Appeal Tip:</strong> If denied, resubmit with this narrative + perio charting + annotated radiographs + AAP position paper on Stage II-IV periodontitis treatment. Most denials reverse on first appeal with complete documentation.
+            </div>
+        `;
+    }
+
+    function copyNarrative() {
+        const text = document.getElementById('narrativeOutput')?.innerText;
+        if(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Narrative copied to clipboard.');
+            }).catch(() => {
+                const range = document.createRange();
+                range.selectNodeContents(document.getElementById('narrativeOutput'));
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                alert('Narrative selected. Press Ctrl+C to copy.');
+            });
+        }
     }
 
     // ============= REPORT HELPER FUNCTIONS =============
@@ -2416,7 +3117,7 @@
         const slp = parseInt(document.getElementById('sleepScore')?.textContent)||0;
         if(stage >= 3) refs.push({type:'Periodontist',priority:'High',reason:'Stage '+stage+' requires specialist management'});
         if(cv >= 12) refs.push({type:'Cardiologist',priority:'High',reason:'High periodontal-cardiovascular risk'});
-        if(inf >= 15) refs.push({type:'Functional Medicine',priority:'High',reason:'Elevated systemic inflammatory burden'});
+        if(inf >= 15) refs.push({type:'Integrative/Nutritional Medicine',priority:'High',reason:'Elevated systemic inflammatory burden'});
         if(slp >= 10) refs.push({type:'Sleep Medicine',priority:'High',reason:'Airway/sleep findings warrant polysomnography'});
         if(ck('leukoplakia')) refs.push({type:'Oral Pathologist',priority:'High',reason:'Leukoplakia: biopsy to rule out dysplasia'});
         if(ck('flagPregnant')&&stage>=2) refs.push({type:'OB/GYN Coordination',priority:'High',reason:'Active perio in pregnancy'});
@@ -2696,6 +3397,7 @@
             patient: {
                 name: val('patientName'), dob: val('dob'), assessmentDate: val('assessmentDate'),
                 gender: val('gender'), visitType: val('visitType'),
+                hygienist: val('hygienistSelect'),
                 pregnant: ck('flagPregnant'), pediatric: ck('flagPediatric'),
                 chiefComplaint: val('chiefComplaint')
             },
@@ -2822,6 +3524,7 @@
             setVal('patientName',d.patient.name); setVal('dob',d.patient.dob);
             setVal('assessmentDate',d.patient.assessmentDate); setVal('gender',d.patient.gender);
             setVal('visitType',d.patient.visitType); setCk('flagPregnant',d.patient.pregnant);
+            if(d.patient.hygienist) setVal('hygienistSelect',d.patient.hygienist);
             setCk('flagPediatric',d.patient.pediatric); setVal('chiefComplaint',d.patient.chiefComplaint);
         }
         if(d.medical?.conditions) {
@@ -2911,12 +3614,686 @@
         updateAll();
     }
 
+    // ============= PRACTICE BRANDING =============
+    function handleLogoUpload() {
+        const file = document.getElementById('logoUpload')?.files[0];
+        if(!file) return;
+        if(file.size > 500000) { alert('Logo file too large. Please use an image under 500KB.'); return; }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64 = e.target.result;
+            try {
+                localStorage.setItem('oshp_logo', base64);
+                updateLogoPreview(base64);
+            } catch(err) { alert('Error saving logo: ' + err.message); }
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function updateLogoPreview(src) {
+        const preview = document.getElementById('logoPreview');
+        if(preview && src) {
+            preview.innerHTML = '<img src="' + src + '" style="max-width:100%;max-height:100%;object-fit:contain;">';
+        } else if(preview) {
+            preview.innerHTML = '<span style="font-size:0.75em;color:var(--text-light);">No logo</span>';
+        }
+    }
+
+    function saveBranding() {
+        const branding = {
+            practiceName: val('practiceName'),
+            providerName: val('providerName'),
+            practiceAddress: val('practiceAddress'),
+            practicePhone: val('practicePhone')
+        };
+        try { localStorage.setItem('oshp_branding', JSON.stringify(branding)); } catch(e) {}
+    }
+
+    function loadBranding() {
+        try {
+            const b = JSON.parse(localStorage.getItem('oshp_branding') || '{}');
+            if(b.practiceName) document.getElementById('practiceName').value = b.practiceName;
+            if(b.providerName) document.getElementById('providerName').value = b.providerName;
+            if(b.practiceAddress) document.getElementById('practiceAddress').value = b.practiceAddress;
+            if(b.practicePhone) document.getElementById('practicePhone').value = b.practicePhone;
+            const logo = localStorage.getItem('oshp_logo');
+            if(logo) updateLogoPreview(logo);
+        } catch(e) {}
+    }
+
+    function clearBranding() {
+        if(!confirm('Clear all practice branding (logo, name, address)?')) return;
+        localStorage.removeItem('oshp_logo');
+        localStorage.removeItem('oshp_branding');
+        document.getElementById('practiceName').value = '';
+        document.getElementById('providerName').value = '';
+        document.getElementById('practiceAddress').value = '';
+        document.getElementById('practicePhone').value = '';
+        updateLogoPreview(null);
+    }
+
+    function showModal(id) { document.getElementById(id)?.classList.add('open'); }
+
+    function getBrandingHeader() {
+        let b = {};
+        try { b = JSON.parse(localStorage.getItem('oshp_branding') || '{}'); } catch(e) {}
+        const logo = localStorage.getItem('oshp_logo');
+        const hasContent = logo || b.practiceName || b.providerName;
+        if(!hasContent) return '';
+
+        return `<div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;padding-bottom:14px;border-bottom:2px solid var(--primary,#1a5276);">
+            ${logo ? '<img src="' + logo + '" style="max-height:60px;max-width:140px;object-fit:contain;">' : ''}
+            <div>
+                ${b.practiceName ? '<div style="font-weight:700;font-size:1.1em;color:var(--primary,#1a5276);">' + b.practiceName + '</div>' : ''}
+                ${b.providerName ? '<div style="font-size:0.9em;">' + b.providerName + '</div>' : ''}
+                ${b.practiceAddress ? '<div style="font-size:0.82em;color:var(--text-light,#7f8c8d);">' + b.practiceAddress + (b.practicePhone ? ' | ' + b.practicePhone : '') + '</div>' : ''}
+            </div>
+        </div>`;
+    }
+
+    // ============= HYGIENIST MANAGEMENT & TRACKING =============
+    function getHygienistList() {
+        try { return JSON.parse(localStorage.getItem('oshp_hygienists') || '[]'); } catch(e) { return []; }
+    }
+
+    function refreshHygienistDropdown() {
+        const sel = document.getElementById('hygienistSelect');
+        if(!sel) return;
+        const list = getHygienistList();
+        sel.innerHTML = '<option value="">Select Hygienist</option>';
+        list.forEach(name => {
+            sel.innerHTML += '<option value="' + name + '">' + name + '</option>';
+        });
+    }
+
+    function addHygienist() {
+        const input = document.getElementById('newHygienistName');
+        const name = input?.value?.trim();
+        if(!name) { alert('Enter a hygienist name.'); return; }
+        const list = getHygienistList();
+        if(list.includes(name)) { alert(name + ' already exists.'); return; }
+        list.push(name);
+        localStorage.setItem('oshp_hygienists', JSON.stringify(list));
+        input.value = '';
+        refreshHygienistDropdown();
+        document.getElementById('hygienistSelect').value = name;
+    }
+
+    function getTrackingLog() {
+        try { return JSON.parse(localStorage.getItem('oshp_tracking') || '[]'); } catch(e) { return []; }
+    }
+
+    function logAssessment() {
+        // Called when saving a patient - logs metrics for dashboard
+        const hygienist = val('hygienistSelect');
+        if(!hygienist) return; // Can't track without hygienist
+
+        const stage = parseInt(val('perioStage')) || 0;
+        const pathogenCount = [ck('pgDetected'),ck('tdDetected'),ck('tfDetected'),ck('aaDetected'),ck('fnDetected'),ck('piDetected')].filter(Boolean).length;
+        const suppProtocols = document.getElementById('dentalSupContent')?.querySelectorAll('.protocol-card')?.length || 0;
+        const salivaryOrdered = [ck('orderMyPerioPath'),ck('orderMyPerioID'),ck('orderMMP8'),ck('orderCytokines'),ck('orderCariscreen')].filter(Boolean).length;
+        const airwayFlagged = (parseInt(selVal('mallampati')) >= 3) || ck('tongueScallop') || ck('retrognathia') || ck('mouthBreathing');
+        const sleepScore = parseInt(document.getElementById('sleepScore')?.textContent) || 0;
+
+        const entry = {
+            date: val('assessmentDate') || new Date().toISOString().split('T')[0],
+            timestamp: Date.now(),
+            hygienist: hygienist,
+            patient: val('patientName') || 'Unknown',
+            srpIdentified: stage >= 2,
+            perioStage: stage,
+            perioGrade: val('perioGrade') || '',
+            supplementPlans: suppProtocols,
+            salivaryTests: salivaryOrdered,
+            airwayFlagged: airwayFlagged ? 1 : 0,
+            sleepRisk: sleepScore >= 10,
+            pathogensDetected: pathogenCount,
+            drugInteractions: document.getElementById('drugNutrientContent')?.querySelectorAll('.protocol-card')?.length || 0
+        };
+
+        const log = getTrackingLog();
+        log.push(entry);
+        // Keep last 5000 entries
+        if(log.length > 5000) log.splice(0, log.length - 5000);
+        try {
+            localStorage.setItem('oshp_tracking', JSON.stringify(log));
+        } catch(e) {
+            if(e.name === 'QuotaExceededError') {
+                // Trim to last 2000
+                log.splice(0, log.length - 2000);
+                localStorage.setItem('oshp_tracking', JSON.stringify(log));
+            }
+        }
+    }
+
+    function refreshDashboard() {
+        const log = getTrackingLog();
+        const periodDays = parseInt(val('dashPeriod')) || 99999;
+        const cutoff = periodDays === 99999 ? 0 : Date.now() - (periodDays * 86400000);
+        const filtered = periodDays === 99999 ? log : log.filter(e => (e.timestamp || 0) >= cutoff);
+
+        // Summary cards
+        const totalAssessments = filtered.length;
+        const totalSRP = filtered.filter(e => e.srpIdentified).length;
+        const totalSupps = filtered.filter(e => e.supplementPlans > 0).length;
+        const totalTests = filtered.reduce((sum, e) => sum + (e.salivaryTests || 0), 0);
+
+        document.getElementById('dashTotalAssessments').textContent = totalAssessments;
+        document.getElementById('dashTotalSRP').textContent = totalSRP;
+        document.getElementById('dashTotalSupps').textContent = totalSupps;
+        document.getElementById('dashTotalTests').textContent = totalTests;
+
+        // Per-hygienist table
+        const byHygienist = {};
+        filtered.forEach(e => {
+            const h = e.hygienist || 'Unassigned';
+            if(!byHygienist[h]) byHygienist[h] = {assessments:0, srp:0, supps:0, tests:0, airway:0};
+            byHygienist[h].assessments++;
+            if(e.srpIdentified) byHygienist[h].srp++;
+            if(e.supplementPlans > 0) byHygienist[h].supps++;
+            byHygienist[h].tests += (e.salivaryTests || 0);
+            byHygienist[h].airway += (e.airwayFlagged || 0);
+        });
+
+        const tbody = document.getElementById('dashHygienistBody');
+        if(tbody) {
+            if(Object.keys(byHygienist).length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-light);padding:20px;">No assessment data yet. Save patient assessments with a hygienist selected to begin tracking.</td></tr>';
+            } else {
+                let rows = '';
+                Object.keys(byHygienist).sort().forEach(h => {
+                    const d = byHygienist[h];
+                    const srpRate = d.assessments > 0 ? Math.round(d.srp / d.assessments * 100) : 0;
+                    const suppRate = d.assessments > 0 ? Math.round(d.supps / d.assessments * 100) : 0;
+                    const srpColor = srpRate >= 40 ? 'var(--success)' : srpRate >= 20 ? '#d68910' : 'var(--text-light)';
+                    const suppColor = suppRate >= 50 ? 'var(--success)' : suppRate >= 25 ? '#d68910' : 'var(--text-light)';
+                    rows += '<tr>';
+                    rows += '<td><strong>' + h + '</strong></td>';
+                    rows += '<td>' + d.assessments + '</td>';
+                    rows += '<td>' + d.srp + '</td>';
+                    rows += '<td style="font-weight:700;color:' + srpColor + ';">' + srpRate + '%</td>';
+                    rows += '<td>' + d.supps + '</td>';
+                    rows += '<td style="font-weight:700;color:' + suppColor + ';">' + suppRate + '%</td>';
+                    rows += '<td>' + d.tests + '</td>';
+                    rows += '<td>' + d.airway + '</td>';
+                    rows += '</tr>';
+                });
+                tbody.innerHTML = rows;
+            }
+        }
+
+        // Monthly trend
+        const trendDiv = document.getElementById('dashTrendContent');
+        if(trendDiv) {
+            const byMonth = {};
+            filtered.forEach(e => {
+                const month = (e.date || '').substring(0, 7); // YYYY-MM
+                if(!month) return;
+                if(!byMonth[month]) byMonth[month] = {assessments:0, srp:0, supps:0, tests:0};
+                byMonth[month].assessments++;
+                if(e.srpIdentified) byMonth[month].srp++;
+                if(e.supplementPlans > 0) byMonth[month].supps++;
+                byMonth[month].tests += (e.salivaryTests || 0);
+            });
+
+            const months = Object.keys(byMonth).sort();
+            if(months.length === 0) {
+                trendDiv.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px;">No trend data available yet.</p>';
+            } else {
+                let tbl = '<table><tr><th>Month</th><th>Assessments</th><th>SRP Cases</th><th>SRP Rate</th><th>Supplement Plans</th><th>Salivary Tests</th></tr>';
+                months.forEach(m => {
+                    const d = byMonth[m];
+                    const rate = d.assessments > 0 ? Math.round(d.srp / d.assessments * 100) + '%' : '0%';
+                    tbl += '<tr><td><strong>' + m + '</strong></td><td>' + d.assessments + '</td><td>' + d.srp + '</td><td>' + rate + '</td><td>' + d.supps + '</td><td>' + d.tests + '</td></tr>';
+                });
+                tbl += '</table>';
+                trendDiv.innerHTML = tbl;
+            }
+        }
+
+        // Revenue estimate
+        const revDiv = document.getElementById('dashRevenueEstimate');
+        if(revDiv) {
+            const avgOrder = numVal('dashAvgOrder') || 55;
+            const conversion = (numVal('dashConversion') || 25) / 100;
+            const margin = (numVal('dashMargin') || 40) / 100;
+
+            const suppPatientsPerMonth = totalAssessments > 0 && filtered.length > 0
+                ? Math.round(totalSupps / Math.max(1, Math.ceil(periodDays / 30)))
+                : 0;
+            const convertedPerMonth = Math.round(suppPatientsPerMonth * conversion);
+            const grossRevPerMonth = convertedPerMonth * avgOrder;
+            const profitPerMonth = Math.round(grossRevPerMonth * margin);
+            const annualized = profitPerMonth * 12;
+
+            if(totalAssessments === 0) {
+                revDiv.innerHTML = '<p style="color:var(--text-light);">Save assessments to see revenue projections.</p>';
+            } else {
+                revDiv.innerHTML = '<div class="grid-4">' +
+                    '<div class="score-card neutral"><div class="score-val">' + suppPatientsPerMonth + '</div><div class="score-label">Supp. Plans / Month</div></div>' +
+                    '<div class="score-card neutral"><div class="score-val">' + convertedPerMonth + '</div><div class="score-label">Estimated Purchases</div></div>' +
+                    '<div class="score-card neutral"><div class="score-val">$' + grossRevPerMonth.toLocaleString() + '</div><div class="score-label">Gross Revenue / Month</div></div>' +
+                    '<div class="score-card ' + (profitPerMonth >= 500 ? 'low' : 'neutral') + '"><div class="score-val">$' + profitPerMonth.toLocaleString() + '</div><div class="score-label">Net Profit / Month</div></div>' +
+                    '</div>' +
+                    '<div class="alert alert-success" style="margin-top:12px;font-size:0.92em;"><strong>Projected Annual Supplement Profit: $' + annualized.toLocaleString() + '</strong> (based on current assessment volume and conversion estimates)</div>';
+            }
+        }
+    }
+
+    // ============= HOOK TRACKING INTO SAVE =============
+    function getPatientList() {
+        try {
+            return JSON.parse(localStorage.getItem('oshp_patients') || '{}');
+        } catch(e) { return {}; }
+    }
+
+    function refreshPatientDropdown() {
+        const sel = document.getElementById('patientSelect');
+        if(!sel) return;
+        const patients = getPatientList();
+        const keys = Object.keys(patients).sort((a,b) => {
+            return (patients[b].lastSaved || 0) - (patients[a].lastSaved || 0);
+        });
+        sel.innerHTML = '<option value="">-- Select Patient (' + keys.length + ') --</option>';
+        keys.forEach(key => {
+            const p = patients[key];
+            const label = p.name + (p.dob ? ' | ' + p.dob : '') + (p.lastDate ? ' | Last: ' + p.lastDate : '');
+            sel.innerHTML += '<option value="' + key + '">' + label + '</option>';
+        });
+    }
+
+    function getPatientKey(name, dob) {
+        return (name.toLowerCase().trim() + '|' + (dob || '')).replace(/\s+/g,'_');
+    }
+
+    function saveCurrentPatient() {
+        const name = val('patientName');
+        if(!name || name.trim().length === 0) {
+            alert('Enter a patient name before saving.');
+            return;
+        }
+        const dob = val('dob');
+        const key = getPatientKey(name, dob);
+        const data = collectAllData();
+        data._meta = {
+            name: name,
+            dob: dob,
+            lastDate: val('assessmentDate') || new Date().toISOString().split('T')[0],
+            lastSaved: Date.now()
+        };
+
+        const patients = getPatientList();
+
+        // Check for existing - offer to update or create new
+        if(patients[key]) {
+            // Store previous assessment for history
+            if(!patients[key].history) patients[key].history = [];
+            patients[key].history.push({
+                date: patients[key].lastDate || 'unknown',
+                riskScores: patients[key].riskScores || {},
+                perio: patients[key].perio || {}
+            });
+            // Keep only last 10 assessments
+            if(patients[key].history.length > 10) patients[key].history = patients[key].history.slice(-10);
+        }
+
+        patients[key] = Object.assign(data, {
+            name: name,
+            dob: dob,
+            lastDate: data._meta.lastDate,
+            lastSaved: data._meta.lastSaved,
+            history: patients[key]?.history || []
+        });
+
+        try {
+            localStorage.setItem('oshp_patients', JSON.stringify(patients));
+            refreshPatientDropdown();
+            // Set dropdown to current patient
+            document.getElementById('patientSelect').value = key;
+            // Log metrics for hygiene dashboard
+            logAssessment();
+            alert('Patient saved: ' + name);
+        } catch(e) {
+            if(e.name === 'QuotaExceededError') {
+                alert('Local storage is full. Export older patients as JSON and delete them to free space.');
+            } else {
+                alert('Error saving patient: ' + e.message);
+            }
+        }
+    }
+
+    function loadPatientFromList() {
+        const sel = document.getElementById('patientSelect');
+        const key = sel?.value;
+        if(!key) return;
+
+        const patients = getPatientList();
+        const data = patients[key];
+        if(!data) { alert('Patient not found.'); return; }
+
+        loadData(data);
+
+        // Show history summary if available
+        if(data.history && data.history.length > 0) {
+            const lastVisit = data.history[data.history.length - 1];
+            const historyNote = `Previous visit: ${lastVisit.date || 'unknown'}` +
+                (lastVisit.perio?.stage ? ` | Stage ${lastVisit.perio.stage}` : '') +
+                (lastVisit.riskScores?.cv ? ` | CV Risk: ${lastVisit.riskScores.cv}` : '');
+            console.log('Patient history:', historyNote);
+        }
+    }
+
+    function newPatient() {
+        if(val('patientName') && !confirm('Clear current assessment and start a new patient?')) return;
+
+        // Reset all form fields
+        document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], textarea').forEach(el => {
+            if(el.id === 'assessmentDate') {
+                el.valueAsDate = new Date();
+            } else if(el.type === 'number') {
+                el.value = '';
+            } else {
+                el.value = '';
+            }
+        });
+        document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+            // Keep amalgam concern checked by default
+            if(el.id === 'amalgamConcern' || el.id === 'showFocal' || el.id === 'narCalculus' || el.id === 'ndCharting' || el.id === 'ndRadio' ||
+               el.id.startsWith('nq_ur41') || el.id.startsWith('nq_ul41') || el.id.startsWith('nq_ll41') || el.id.startsWith('nq_lr41')) {
+                el.checked = true;
+            } else {
+                el.checked = false;
+            }
+        });
+        document.querySelectorAll('select').forEach(el => {
+            if(el.id !== 'numberingSystem') el.selectedIndex = 0;
+        });
+
+        // Reset staging
+        document.querySelectorAll('.stage-opt, .grade-opt').forEach(el => el.classList.remove('active'));
+        document.getElementById('perioStage').value = '';
+        document.getElementById('perioGrade').value = '';
+
+        // Reset tooth data
+        toothData = {};
+        selectedToothNum = null;
+        initToothChart();
+        const detailPanel = document.getElementById('toothDetailPanel');
+        if(detailPanel) detailPanel.style.display = 'none';
+
+        // Reset patient dropdown
+        document.getElementById('patientSelect').value = '';
+
+        // Go to panel 0
+        goPanel(0);
+        updateAll();
+    }
+
+    function deletePatient() {
+        const sel = document.getElementById('patientSelect');
+        const key = sel?.value;
+        if(!key) { alert('Select a patient first.'); return; }
+
+        const patients = getPatientList();
+        const name = patients[key]?.name || key;
+        if(!confirm('Permanently delete ' + name + ' from local storage? This cannot be undone.')) return;
+
+        delete patients[key];
+        localStorage.setItem('oshp_patients', JSON.stringify(patients));
+        refreshPatientDropdown();
+        newPatient();
+    }
+
+    // ============= PDF DOWNLOAD =============
+    function downloadPDF() {
+        const reportDiv = document.getElementById('reportContent');
+        const narrativeDiv = document.getElementById('narrativeOutput');
+
+        // Determine what to print
+        let content = '';
+        let title = 'Assessment';
+        const name = val('patientName') || 'Patient';
+        const date = val('assessmentDate') || new Date().toISOString().split('T')[0];
+
+        if(reportDiv && reportDiv.querySelector('.rpt,.pt-rpt,.ins-rpt')) {
+            // A report has been generated
+            content = reportDiv.innerHTML;
+            if(reportDiv.querySelector('.pt-rpt')) title = 'Patient_Report';
+            else if(reportDiv.querySelector('.ins-rpt')) title = 'Insurance_Narrative';
+            else title = 'Clinical_Report';
+        } else if(narrativeDiv && narrativeDiv.innerText.length > 50) {
+            // Use insurance narrative
+            content = '<pre style="font-family:\'DM Sans\',sans-serif;white-space:pre-wrap;line-height:1.7;font-size:11pt;">' + narrativeDiv.innerText + '</pre>';
+            title = 'Insurance_Narrative';
+        } else {
+            // Generate clinical report first
+            generateFullReport();
+            content = reportDiv.innerHTML;
+            title = 'Clinical_Report';
+        }
+
+        // Open in new window for clean print-to-PDF
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>${title} - ${name}</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'DM Sans',sans-serif; padding:30px 40px; color:#2c3e50; line-height:1.5; font-size:10pt; }
+    h1,h2,h3 { color:#1a5276; }
+    table { width:100%; border-collapse:collapse; font-size:9pt; margin:8px 0; }
+    th { text-align:left; padding:6px 8px; background:#f5f6fa; border-bottom:2px solid #dce1e8; font-size:8pt; text-transform:uppercase; }
+    td { padding:6px 8px; border-bottom:1px solid #eee; vertical-align:top; }
+    .card { border:1px solid #ddd; border-radius:6px; padding:14px; margin-bottom:12px; page-break-inside:avoid; }
+    .card-head { border-bottom:1px solid #eee; padding-bottom:8px; margin-bottom:10px; }
+    .alert { padding:10px 14px; border-radius:4px; margin:8px 0; font-size:9pt; page-break-inside:avoid; }
+    .alert-info { background:#eaf2f8; border:1px solid #aed6f1; }
+    .alert-warn { background:#fef9e7; border:1px solid #f9e79f; }
+    .alert-danger { background:#fdedec; border:1px solid #f5b7b1; }
+    .badge { padding:2px 10px; border-radius:12px; font-size:8pt; font-weight:700; }
+    .protocol-card { border:1px solid #ddd; border-radius:6px; margin-bottom:10px; page-break-inside:avoid; }
+    .proto-head { background:#f5f6fa; padding:8px 14px; font-weight:700; font-size:9pt; border-bottom:1px solid #ddd; }
+    .proto-body { padding:10px 14px; }
+    .score-card { text-align:center; padding:10px; }
+    .pt-box { background:#f5f6fa; padding:12px; border-radius:6px; margin:8px 0; }
+    .pt-supp-table { width:100%; border-collapse:collapse; }
+    .pt-supp-table th { text-align:left; padding:4px 6px; background:#f5f6fa; font-size:8pt; }
+    .pt-supp-table td { padding:4px 6px; border-bottom:1px solid #eee; font-size:9pt; }
+    .contra-flag { color:#c0392b; font-size:8pt; margin-top:4px; }
+    @media print { body { padding:15px 20px; } }
+    pre { font-family:'DM Sans',sans-serif; }
+</style>
+</head><body>${content}</body></html>`);
+        printWindow.document.close();
+        setTimeout(() => {
+            printWindow.print();
+        }, 500);
+    }
+
+    // ============= DEMO PATIENT =============
+    function loadDemoPatient() {
+        if(val('patientName') && !confirm('Load demo patient? This will replace current data.')) return;
+
+        // Helper
+        function setV(id,v) { const el=document.getElementById(id); if(el) el.value=v; }
+        function setC(id,v) { const el=document.getElementById(id); if(el) el.checked=v; }
+
+        // Patient info
+        setV('patientName','Margaret Chen');
+        setV('dob','1970-08-14');
+        setV('assessmentDate', new Date().toISOString().split('T')[0]);
+        setV('gender','female');
+        setV('visitType','initial');
+        setV('chiefComplaint','Patient reports bleeding gums when brushing for the past 6 months, occasional jaw pain upon waking, and sensitivity to cold on the lower right side. States she feels fatigued and has been on Zoloft for 2 years and Prilosec for acid reflux. Reports grinding teeth at night. Last dental visit was 18 months ago.');
+
+        // Medical history
+        setC('hxDiabetes', true);
+        setC('hxCVD', false);
+        setC('hxAutoimmune', false);
+        setC('hxGERD', true);
+        setC('hxSleepApnea', false);
+        setC('hxOsteoporosis', false);
+        setC('hxRA', false);
+        setC('hxIBD', false);
+        setC('hxThyroid', true);
+        setC('hxCeliac', false);
+        setC('hxCKD', false);
+        setC('hxCancer', false);
+
+        // Tobacco
+        setV('smokingStatus','former');
+        setV('packYears','8');
+        setV('quitYears','3');
+        setC('useVape', false);
+        setC('useSmokeless', false);
+        setC('useCannabis', false);
+        setC('useAlcohol', false);
+
+        // Medications
+        setC('medXerostomia', true);
+        setC('medBisphosphonates', false);
+        setC('medAnticoag', false);
+        setC('medImmunosup', false);
+        setC('medCCB', false);
+        setC('medPhenytoin', false);
+        setC('medPPI', true);
+        setC('medMetformin', true);
+        setV('medOther','Zoloft 100mg daily, Synthroid 75mcg daily, Prilosec 20mg daily, Metformin 1000mg twice daily');
+
+        // Oral exam
+        setV('caries','4');
+        setV('missingTeeth','3');
+        setV('amalgams','6');
+        setC('erosion', true);
+        setC('whiteSpots', true);
+        setC('sensitivity', true);
+        setC('enamelHypoplasia', false);
+        setC('dissimilarMetals', true);
+        setC('geographicTongue', true);
+        setC('coatedTongue', true);
+        setC('scallopedTongue', true);
+        setC('paleMucosa', false);
+        setC('angularCheilitis', true);
+        setC('dryMouth', true);
+        setC('oralLesions', false);
+        setC('lichenPlanus', false);
+        setC('oralCandidiasis', false);
+        setC('gingivalHyperplasia', false);
+        setC('glossitis', false);
+        setC('leukoplakia', false);
+        setC('bruxism', true);
+        setC('tmjPain', true);
+        setC('headaches', true);
+        setC('muscleTension', true);
+        setC('limitedOpening', false);
+        setV('salivaryPH','6.2');
+        setV('flowRate','reduced');
+        setV('bufferingCap','low');
+
+        // Materials
+        setC('matNickelCrown', true);
+        setC('matBPAComposite', false);
+        setC('matPalladium', false);
+        setC('matTitanium', false);
+        setC('matZirconia', false);
+
+        // Perio staging
+        setV('probingDepth','6');
+        setV('bleeding','52');
+        setV('calMax','5');
+        setV('boneLoss','35');
+        setV('perioTeethLost','2');
+        setV('mobility','grade1');
+        setV('furcation','class1');
+        setStage(3);
+        setGrade('C');
+
+        // Airway
+        setV('mallampati','3');
+        setV('tonsilGrade','2');
+        setV('palatalVault','high');
+        setC('tongueScallop', true);
+        setC('macroglossia', false);
+        setC('retrognathia', false);
+        setC('mouthBreathing', true);
+        setC('neckCirc', false);
+        setC('tongueTie', false);
+
+        // STOP-BANG
+        setC('sbSnoring', true);
+        setC('sbTired', true);
+        setC('sbObserved', false);
+        setC('sbBP', true);
+        setC('sbBMI', false);
+        setC('sbAge', true);
+
+        // Microbiome
+        setC('pgDetected', true);
+        setV('pgLevel','high');
+        setC('tdDetected', true);
+        setV('tdLevel','mod');
+        setC('tfDetected', true);
+        setV('tfLevel','mod');
+        setC('aaDetected', false);
+        setC('fnDetected', true);
+        setV('fnLevel','low');
+        setC('piDetected', false);
+        setC('ecDetected', false);
+        setC('giSymptoms', true);
+        setC('giIBS', false);
+        setC('giFoodSens', true);
+        setC('giAntibiotics', false);
+
+        // Salivary test orders
+        setC('orderMyPerioPath', true);
+        setC('orderMyPerioID', true);
+        setC('orderMMP8', true);
+        setC('orderCytokines', false);
+        setC('orderCariscreen', false);
+
+        // Lab values (some available from recent PCP visit)
+        setV('labCRP','4.2');
+        setV('labVitD','22');
+        setV('labA1c','7.1');
+        setV('labFerritin','18');
+        setV('labHcy','14');
+        setV('labOmega3','3.1');
+        setV('labGlucose','');
+        setV('labZinc','');
+
+        // Tooth data
+        toothData = {};
+        // Amalgams on 3, 14, 19, 30 (common molar locations)
+        [3,14,19,30].forEach(t => { toothData[t] = {statuses: new Set(['amalgam']), materials: new Set()}; });
+        // Additional amalgams on 4, 13
+        [4,13].forEach(t => { toothData[t] = {statuses: new Set(['amalgam']), materials: new Set()}; });
+        // Caries on 20, 21, 29, 5
+        [20,21,29,5].forEach(t => { toothData[t] = {statuses: new Set(['caries']), materials: new Set()}; });
+        // Missing: 15, 18, 31
+        [15,18,31].forEach(t => { toothData[t] = {statuses: new Set(['missing']), materials: new Set()}; });
+        // Root canal on 19 (also has amalgam)
+        toothData[19].statuses.add('rootcanal');
+        // Crown on 30 (also has amalgam underneath)
+        toothData[30].statuses.add('crown');
+        // Nickel crown on 14
+        toothData[14].statuses.add('crown');
+
+        initToothChart();
+        updateAll();
+        goPanel(0);
+    }
+
     // ============= INIT =============
     document.addEventListener('DOMContentLoaded', function() {
         try {
             const dateInput = document.getElementById('assessmentDate');
             if(dateInput) dateInput.valueAsDate = new Date();
             initToothChart();
+            refreshPatientDropdown();
+            refreshHygienistDropdown();
+            loadBranding();
             updateAll();
         } catch(e) { console.error('Init error:', e); }
     });
